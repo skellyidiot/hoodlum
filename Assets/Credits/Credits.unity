@@ -822,7 +822,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Movement and level guy
+  m_Text: 'Player/Car Movement
+
+    Level Design'
 --- !u!222 &700564735
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1209,7 +1211,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ai guy
+  m_Text: AI Programmer
 --- !u!222 &1015343968
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1764,7 +1766,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Art guy
+  m_Text: Main Artist
 --- !u!222 &1599452235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2361,9 +2363,15 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Task and car code and art guy
+  m_Text: 'Task System Programmer
+
+    Car Art
+
+    Scrum Master
+
+'
 --- !u!222 &1780298405
 CanvasRenderer:
   m_ObjectHideFlags: 0
