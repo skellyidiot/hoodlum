@@ -29,7 +29,7 @@ public class AllTasks : MonoBehaviour
     void Start()
     {
         arrow = GameObject.FindGameObjectWithTag("arrow");
-        arrow.SetActive(false);
+        //arrow.SetActive(false);
 
         // task 1
         infosteal = GameObject.FindGameObjectWithTag("info");
@@ -48,14 +48,14 @@ public class AllTasks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TaskmanTXTbox.doingTask1 == true || TaskmanTXTbox.doingTask3 == true || TaskmanTXTbox.doingTask2 == true)
-        {
-            arrow.SetActive(true);
-        }
-        if (TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask3 == false && TaskmanTXTbox.doingTask2 == false)
-        {
-            arrow.SetActive(false);
-        }
+        //if (TaskmanTXTbox.doingTask1 == true || TaskmanTXTbox.doingTask3 == true || TaskmanTXTbox.doingTask2 == true)
+        //{
+        //    arrow.SetActive(true);
+        //}
+        //if (TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask3 == false && TaskmanTXTbox.doingTask2 == false)
+        //{
+        //    arrow.SetActive(false);
+        //}
         //task 3
         if (TaskmanTXTbox.doingTask3 == true)
         {

@@ -31,7 +31,7 @@ public class TaskmanTXTbox : MonoBehaviour
     {
         RootObjectOfHFactsTextBox.SetActive(false);
 
-        txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Hey, I am task man, which task do you want to do? \n 1.) Go infiltrate the leaders house and steal money from the safe \n 2.) Drive leader to his destination \n 3.) Go from ___ to ___ in 60 seconds";
+        txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Hey, I am task man, which task do you want to do? \n 1.) Go infiltrate the mob boss's house and steal money from the safe \n 2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation \n 3.) Deliver my package to ____ in 60 seconds";
     }
 
     void Update()

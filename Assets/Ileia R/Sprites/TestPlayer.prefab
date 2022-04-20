@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7019002722345139738}
   - component: {fileID: 7019002722345139736}
+  - component: {fileID: 1226914113770799902}
   - component: {fileID: 2965826378908322439}
   - component: {fileID: 7019002722345139733}
   - component: {fileID: 7019002722345139732}
@@ -118,6 +119,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1226914113770799902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7019002722345139734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432f36caba2f8a349bcf458fb7638a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 0}
+  infosteal: {fileID: 0}
+  leader: {fileID: 0}
+  dropOff: {fileID: 0}
+  taskmanScript: {fileID: 0}
+  carScript: {fileID: 0}
+  pointB: {fileID: 0}
+  spawnerIfFail: {fileID: 0}
 --- !u!114 &2965826378908322439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,11 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1632b654c55dc714ca1259cb6c978877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDriving: 0
-  car: {fileID: 0}
-  carXR: 0
-  carYR: 0
-  carZR: 0
+  smoke: {fileID: 0}
+  t: {fileID: 0}
+  vR: {x: 0, y: 0, z: 0}
+  cm: {fileID: 0}
+  cm2: {fileID: 0}
+  GetOut: {fileID: 0}
+  RootObjectOfHFactsTextBox: {fileID: 0}
 --- !u!114 &7019002722345139733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  stamina: 10
+  IsRunning: 0
   rb: {fileID: 7019002722345139735}
   cam: {fileID: 0}
 --- !u!114 &7019002722345139732
