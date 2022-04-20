@@ -7,8 +7,14 @@ public class TutorialArrow : MonoBehaviour
     public float speed = 2f;
 
     public GameObject car;
-
     public GameObject jose;
+
+    SpriteRenderer sr;
+
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     // Update is called once per frame
     void Update()
