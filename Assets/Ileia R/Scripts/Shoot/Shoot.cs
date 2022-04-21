@@ -6,19 +6,44 @@ public class Shoot : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletprefab;
+    public GameObject muzzle;
 
     public float force = 20f;
 
+    public bool hasBeenShot = false;
+    public float time = 0.0f;
+    public float interpolationPeriod = 0.0001f;
+    private void Start()
+    {
+        muzzle.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(time);
+        //Debug.Log(hasBeenShot);
+
         if (PlayerMovement.HasGunOut == true)
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                hasBeenShot = true;
                 Shooting();
+                //muzzle.SetActive(true);
+                //time += Time.deltaTime;
             }
         }
+        //if(PlayerMovement.HasGunOut == false)
+        //{
+        //    muzzle.SetActive(false);
+        //}
+        //if (time >= interpolationPeriod)
+        //{
+        //    Debug.Log("STOP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //    //hasBeenShot = false;
+        //    muzzle.SetActive(false);
+        //    time = 0;
+        //}
     }
 
     void Shooting()
