@@ -40,7 +40,6 @@ public class TutorialArrow : MonoBehaviour
         //points to nearest target
         if (TutorialTaskMan.firstTaskDone == false && TutorialTaskMan.firstTask == true)
         {
-            SearchNearest();
             Vector3 vectorToTarget = transform.position - targetObject.transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
