@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2965826378908322439}
   - component: {fileID: 7019002722345139733}
   - component: {fileID: 7019002722345139732}
+  - component: {fileID: 5501860433211222121}
   - component: {fileID: 7019002722345139735}
   - component: {fileID: 7019002722345139739}
   m_Layer: 0
@@ -190,7 +191,29 @@ MonoBehaviour:
   firePoint: {fileID: 7019002721952325563}
   bulletprefab: {fileID: 2346293992769063925, guid: ef89daabde5cda140b8dc0c294c6a27d,
     type: 3}
+  muzzle: {fileID: 0}
   force: 20
+  hasBeenShot: 0
+  time: 0
+  interpolationPeriod: 0.0001
+--- !u!114 &5501860433211222121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7019002722345139734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a374a82ff0e8c24c8f1db735f5ba503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnINBUILDING: {fileID: 0}
+  SpawnNOTINBUILDING: {fileID: 0}
+  isInBuilding: 0
+  hasAlreadyGoneIn: 0
+  arrow: {fileID: 0}
+  arrowPointAt: {fileID: 0}
 --- !u!50 &7019002722345139735
 Rigidbody2D:
   serializedVersion: 4
