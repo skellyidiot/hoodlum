@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class StealTask : MonoBehaviour
 {
+    public float time = 0.0f;
+    public float timeToShow = 1f;
+    public bool isShowing;
+    public GameObject transition;
+
     public GameObject SpawnINBUILDING;
     public GameObject SpawnNOTINBUILDING;
 
@@ -18,10 +23,11 @@ public class StealTask : MonoBehaviour
     void Start()
     {
         arrowPointAt = GameObject.FindGameObjectWithTag("DoorIn");
-       
+
+        transition.SetActive(false);
+        isShowing = false;
 
         isInBuilding = false;
-
         hasAlreadyGoneIn = false;
     }
 

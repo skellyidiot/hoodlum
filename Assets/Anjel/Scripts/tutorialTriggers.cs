@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class tutorialTriggers : MonoBehaviour
 {
-    public static bool firstTaskDone = false;
-    public static int enemyCount = 5;
+    public static int enemyCount;
 
     GameObject bad;
     SpriteRenderer sr;
@@ -15,7 +14,6 @@ public class tutorialTriggers : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        firstTaskDone = false;
         sr = this.GetComponent<SpriteRenderer>();
         sr.enabled = false;
 
@@ -29,19 +27,26 @@ public class tutorialTriggers : MonoBehaviour
         {
             sr.enabled = true;
         }
-    }
 
-    private void OnTriggerEnter2D(Collision2D collision)
-    {
+        if (enemyCount <= 0)
+        {
+            Debug.Log(TutorialTaskMan.firstTaskDone);
+            TutorialTaskMan.firstTaskDone = true;
+            Debug.Log(TutorialTaskMan.firstTaskDone);
+        }
+
+        
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D (Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
             Debug.Log("kill");
-            Destroy(gameObject);
+            Destroy(this.gameObject);
             enemyCount--;
+            Debug.Log(enemyCount);
         }
     }
 }

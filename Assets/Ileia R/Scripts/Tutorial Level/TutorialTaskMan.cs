@@ -9,15 +9,21 @@ public class TutorialTaskMan : MonoBehaviour
     public GameObject player;
     private GameObject textobj;
     public static bool firstTask = false;
+    public static bool firstTaskDone = false;
 
     public Text txt;
     public GameObject RootObjectOfHFactsTextBox;
     public bool isTalking;
+    public GameObject gunTxt;
+    public GameObject joseTxt;
 
 
      void Start()
      {
         firstTask = false;
+        firstTaskDone = false;
+        gunTxt.SetActive(false);
+        joseTxt.SetActive(true);
         RootObjectOfHFactsTextBox.SetActive(false);
 
         txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "The name's Jose. I'll give you a job, and you do it. " +
@@ -26,21 +32,14 @@ public class TutorialTaskMan : MonoBehaviour
 
     private void Update()
     {
-        if (firstTask == false)
+        if (firstTask == false && tutorialTriggers.enemyCount >= 5)
         {
             if (isTalking == true && Input.GetKeyDown("1"))
             {
+                gunTxt.SetActive(true);
                 txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Good. Let's get you started. There are five mafia \nmembers around the streets. " +
-                    "Go take them out. Got it? \n \n1.) Yes \n2.) No";
-
-                if (isTalking == true && Input.GetKeyDown("1"))
-                {
-                    firstTask = true;
-                }
-                if (isTalking == true && Input.GetKeyDown("2"))
-                {
-                    SceneManager.LoadScene("basic");
-                }
+                    "\n\nGo take them out and come back to me.";
+                firstTask = true;
             }
             if (isTalking == true && Input.GetKeyDown("2"))
             {
@@ -48,12 +47,14 @@ public class TutorialTaskMan : MonoBehaviour
             }
         }
 
-        if(tutorialTriggers.firstTaskDone == true)
+        if(firstTaskDone == true)
         {
-            txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Good job, you're ready to go. \n1.) Start \n2.) No";
+            gunTxt.SetActive(false);
+            txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Good job, you're ready to go. Let me know when you \nwanna get going." +
+                "\n\n1.) Let's Go \n2.) I'll stay a bit";
             if (isTalking == true && Input.GetKeyDown("1"))
             {
-                firstTask = true;
+                SceneManager.LoadScene("basic");
             }
             if (isTalking == true && Input.GetKeyDown("2"))
             {
@@ -69,6 +70,7 @@ public class TutorialTaskMan : MonoBehaviour
         {
             RootObjectOfHFactsTextBox.SetActive(true);
             isTalking = true;
+            joseTxt.SetActive(false);
         }
         if (collision.gameObject.tag != "Player")
         {
