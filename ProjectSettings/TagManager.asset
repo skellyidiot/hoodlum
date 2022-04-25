@@ -18,6 +18,7 @@ TagManager:
   - arrow
   - COLLIDER
   - evil
+  - goods
   layers:
   - Default
   - TransparentFX
