@@ -7,8 +7,12 @@ public class AllTasks : MonoBehaviour
 {
     public GameObject arrow;
     //task 1
+    public static bool isInBuilding;
     public GameObject infosteal;
     public static bool hasInfo;
+    public GameObject DropOfftext;
+    public GameObject basket;
+    
 
     //task 2 
     public GameObject leader;
@@ -28,11 +32,14 @@ public class AllTasks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         arrow = GameObject.FindGameObjectWithTag("arrow");
         //arrow.SetActive(false);
 
         // task 1
         infosteal = GameObject.FindGameObjectWithTag("info");
+        basket.SetActive(false);
+        DropOfftext.SetActive(false);
 
         //task 2 
         leader = GameObject.FindGameObjectWithTag("Leader");
@@ -48,6 +55,11 @@ public class AllTasks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hasInfo == true)
+        {
+            DropOfftext.SetActive(true);
+            basket.SetActive(true);
+        }
         //if (TaskmanTXTbox.doingTask1 == true || TaskmanTXTbox.doingTask3 == true || TaskmanTXTbox.doingTask2 == true)
         //{
         //    arrow.SetActive(true);
@@ -79,7 +91,17 @@ public class AllTasks : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //task 1
-        if(collision.gameObject.tag == "info" && hasInfo == false)
+        if(collision.gameObject.tag == "basket")
+        {
+            Destroy(basket);
+            Destroy(DropOfftext);
+        }
+        
+        if (collision.gameObject.tag == "DoorIn")
+        {
+            isInBuilding = true;
+        }
+        if (collision.gameObject.tag == "info" && hasInfo == false)
         {
             infosteal.SetActive(false);
             hasInfo = true;
@@ -107,7 +129,8 @@ public class AllTasks : MonoBehaviour
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
-    {   //task 2
+    {   
+        //task 2
         if(collision.gameObject.tag == "DropOff" && LeaderInCar == true)
         {
             Destroy(leader);

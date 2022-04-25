@@ -35,6 +35,11 @@ public class PointToTargert : MonoBehaviour
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
         }
+        if (TaskmanTXTbox.doingTask1 == true && TaskmanTXTbox.doneTask1 == false && AllTasks.isInBuilding == true)
+        {
+            sr.enabled = false;
+            Debug.Log(AllTasks.isInBuilding);
+        }
 
         if (TaskmanTXTbox.doingTask2 == true && TaskmanTXTbox.doneTask2 == false && AllTasks.LeaderInCar == false)
         {
