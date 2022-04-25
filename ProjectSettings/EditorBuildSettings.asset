@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Credits/Credits.unity
     guid: b52deaa8130ff584cb579ea03dcf9c8d
   - enabled: 1
-    path: Assets/Anjel/Scenes/basic.unity
+    path: Assets/mainLevl.unity
     guid: ae1dd35640896374aaaf6404126f8cf8
   - enabled: 1
     path: Assets/Ileia R/TestScenes/Two.unity
