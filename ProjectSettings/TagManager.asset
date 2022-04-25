@@ -19,6 +19,7 @@ TagManager:
   - COLLIDER
   - evil
   - goods
+  - basket
   layers:
   - Default
   - TransparentFX
