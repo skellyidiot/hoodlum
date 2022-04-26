@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class TrashCan : PhysicsHitObject
 {
+    Animator anim;
     float time = 0;
     public GameObject Trash;
     // Start is called before the first frame update
-
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        
+    }
     // Update is called once per frame
     public override void Hit()
     {
         base.Hit();
+        anim.SetBool("hit", true);
+        StartCoroutine(Wait());
         SpawnTrash();
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.2f);
     }
     void SpawnTrash()
     {
