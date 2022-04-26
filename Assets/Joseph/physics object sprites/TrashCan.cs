@@ -22,11 +22,11 @@ public class TrashCan : PhysicsHitObject
         if (gothit)
         {
             Timer += Time.deltaTime;
-            if (Timer > 3)
+            if (Timer > 10)
             {
                 sr.color = new Color(1, 1, 1, sr.color.a - 0.001f);
             }
-            if (Timer > 8)
+            if (Timer > 15)
             {
                 Destroy(this.gameObject);
             }
