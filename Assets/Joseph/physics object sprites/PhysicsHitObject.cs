@@ -15,4 +15,8 @@ public class PhysicsHitObject : MonoBehaviour
     {
         
     }
+    public virtual void Hit()
+    {
+        print("hit");
+    }
 }

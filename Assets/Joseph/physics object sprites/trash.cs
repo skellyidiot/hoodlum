@@ -4,12 +4,41 @@ using UnityEngine;
 
 public class trash : MonoBehaviour
 {
+    float Timer = 0;
+    bool f = false;
     public enum TRASHES { napkin,cig,burger,cup,turd,magazine,ketchup,plate,sus,arm,coal,weed,shoe,powder}
     public  Sprite[] sprites = new Sprite[14];
+    SpriteRenderer sr;
     // Start is called before the first frame update
-    public void Start()
+    public void Begin()
     {
+        sr = GetComponent<SpriteRenderer>();
+        float rng = Random.RandomRange(-22.5f, 22.5f);
+        GetComponent<Rigidbody2D>().angularVelocity = rng * 5;
+        print(transform.rotation.eulerAngles.z);
+        float brot = -transform.rotation.eulerAngles.z + rng;
+        transform.eulerAngles = new Vector3(0, 0, rng + brot);
+        float rngvel = Random.RandomRange(80f, 160f);
+        print(transform.forward * rngvel);
+        GetComponent<Rigidbody2D>().AddForce(transform.up * rngvel);
         GetComponent<SpriteRenderer>().sprite = GetTrashSprite(GetTrash());
+        f = true;
+    }
+    public void Update()
+    {
+        if (f)
+        {
+            Timer += Time.deltaTime;
+            if (Timer > 1)
+            {
+                sr.color = new Color(1, 1, 1, sr.color.a - 0.001f);
+            }
+            if (Timer > 5)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        
     }
     public  Sprite GetTrashSprite(TRASHES tr)
     {
@@ -88,13 +117,11 @@ public class trash : MonoBehaviour
             int rng1 = Random.Range(0, 13);
 
             float rng = Random.Range(0f, 1f);
-            print(rng);
             TRASHES TheTrash = (TRASHES)rng1;
             if (rng <= GetTrashRandom((TheTrash)))
             {
                 return TheTrash;
             }
-            print("Didnt get it :(");
         }
         
     }
