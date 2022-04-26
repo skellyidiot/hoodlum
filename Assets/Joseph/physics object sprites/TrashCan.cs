@@ -7,19 +7,38 @@ public class TrashCan : PhysicsHitObject
     Animator anim;
     float time = 0;
     public GameObject Trash;
+    public bool gothit = false;
+    float Timer = 0;
+    SpriteRenderer sr;
     // Start is called before the first frame update
     private void Start()
     {
         anim = GetComponent<Animator>();
-        
+        sr = GetComponent<SpriteRenderer>();
     }
     // Update is called once per frame
+    private void Update()
+    {
+        if (gothit)
+        {
+            Timer += Time.deltaTime;
+            if (Timer > 3)
+            {
+                sr.color = new Color(1, 1, 1, sr.color.a - 0.001f);
+            }
+            if (Timer > 8)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
     public override void Hit()
     {
         base.Hit();
         anim.SetBool("hit", true);
         StartCoroutine(Wait());
         SpawnTrash();
+        gothit = true;
     }
     IEnumerator Wait()
     {
@@ -27,7 +46,7 @@ public class TrashCan : PhysicsHitObject
     }
     void SpawnTrash()
     {
-        int TrashAmnt = Random.RandomRange(5, 20);
+        int TrashAmnt = Random.RandomRange(10, 30);
         for (int i = 0; i < TrashAmnt; i++)
         {
             GameObject e = Instantiate(Trash,transform.position,transform.rotation);

@@ -20,6 +20,7 @@ TagManager:
   - evil
   - goods
   - basket
+  - PhysicsObjects
   layers:
   - Default
   - TransparentFX
