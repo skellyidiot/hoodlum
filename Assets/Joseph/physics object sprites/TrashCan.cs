@@ -34,11 +34,15 @@ public class TrashCan : PhysicsHitObject
     }
     public override void Hit()
     {
-        base.Hit();
-        anim.SetBool("hit", true);
-        StartCoroutine(Wait());
-        SpawnTrash();
-        gothit = true;
+        if (gothit != true)
+        {
+            base.Hit();
+            anim.SetBool("hit", true);
+            gothit = true;
+            StartCoroutine(Wait());
+            SpawnTrash();
+            
+        }
     }
     IEnumerator Wait()
     {
