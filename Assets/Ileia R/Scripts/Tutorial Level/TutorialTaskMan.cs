@@ -27,7 +27,7 @@ public class TutorialTaskMan : MonoBehaviour
         RootObjectOfHFactsTextBox.SetActive(false);
 
         txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "The name's Jose. I'll give you a job, and you do it. " +
-            "\nYou ready to help the community now? \n \nPress the corresponding key to answer: \n1.) Yes";
+            "\nYou ready to help the community now? \n \nPress the corresponding key to answer: \n1.) Let's do this! \n2.) I know what to do";
      }
 
     private void Update()
@@ -40,6 +40,10 @@ public class TutorialTaskMan : MonoBehaviour
                 txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Good. Let's get you started. There are five mafia \nmembers around the streets. " +
                     "\n\nGo take them out and come back to me.";
                 firstTask = true;
+            }
+            if (isTalking == true && Input.GetKeyDown("2"))
+            {
+                SceneManager.LoadScene("mainLevl");
             }
         }
 
