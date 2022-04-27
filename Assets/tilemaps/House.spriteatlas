@@ -33,7 +33,17 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: -3344568106538371541, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
+  - {fileID: 909444148276766886, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
+  - {fileID: -1850680290757873719, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
+  - {fileID: -3634398366838870730, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
+  - {fileID: 1705411122146539360, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - tile_map_1
+  - tile_map_0
+  - tile_map_3
+  - tile_map_2
+  - tile_map_4
   m_Tag: House
   m_IsVariant: 0

@@ -12,7 +12,7 @@ public class AllTasks : MonoBehaviour
     public static bool hasInfo;
     public GameObject DropOfftext;
     public GameObject basket;
-    
+    public GameObject moneyText;
 
     //task 2 
     public GameObject leader;
@@ -95,6 +95,7 @@ public class AllTasks : MonoBehaviour
         {
             Destroy(basket);
             Destroy(DropOfftext);
+            Destroy(moneyText);
         }
         
         if (collision.gameObject.tag == "DoorIn")
