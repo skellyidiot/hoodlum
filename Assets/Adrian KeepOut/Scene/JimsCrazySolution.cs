@@ -28,6 +28,7 @@ public class JimsCrazySolution : MonoBehaviour
     public Vector2 startLocation;
     public Vector2 pathDirection;
     public bool spawnedAtlastPos;
+    
     void Start()
 
     {
