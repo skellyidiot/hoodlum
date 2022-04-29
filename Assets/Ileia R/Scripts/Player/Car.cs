@@ -6,6 +6,12 @@ using Cinemachine;
 
 public class Car : MonoBehaviour
 {
+    public static bool isCollidedLeft;
+    public static bool isCollidedRight;
+
+    public GameObject GetOutLocLeft;
+    public GameObject GetOutLocRight;
+
     public static bool isDriving;
 
     public GameObject smoke;
@@ -90,6 +96,28 @@ public class Car : MonoBehaviour
         {
             if (isDriving == true)
             {
+                //if(isCollidedLeft == false)
+                //{
+                //    carX = car.transform.position.x - .2F;
+                //    carY = car.transform.position.y;
+                //    carZ = car.transform.position.z;
+                //    gameObject.transform.position = GetOutLocLeft.transform.position;
+                //    car.transform.parent = null;
+                //    isDriving = false;
+                //    t = car.transform;
+                //    vR = car.transform.eulerAngles;
+                //}
+                //if (isCollidedLeft == false)
+                //{
+                //    carX = car.transform.position.x - .2F;
+                //    carY = car.transform.position.y;
+                //    carZ = car.transform.position.z;
+                //    gameObject.transform.position = GetOutLocRight.transform.position;
+                //    car.transform.parent = null;
+                //    isDriving = false;
+                //    t = car.transform;
+                //    vR = car.transform.eulerAngles;
+                //}
                 carX = car.transform.position.x - .2F;
                 carY = car.transform.position.y;
                 carZ = car.transform.position.z;
