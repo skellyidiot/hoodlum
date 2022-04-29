@@ -10,11 +10,15 @@ public class TrashCan : PhysicsHitObject
     public bool gothit = false;
     float Timer = 0;
     SpriteRenderer sr;
+    public Vector3 startpos;
+    Rigidbody2D rb;
     // Start is called before the first frame update
     private void Start()
     {
+        startpos = transform.position;
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
     private void Update()
@@ -22,27 +26,39 @@ public class TrashCan : PhysicsHitObject
         if (gothit)
         {
             Timer += Time.deltaTime;
-            if (Timer > 10)
+            if (Timer > 5)
             {
                 sr.color = new Color(1, 1, 1, sr.color.a - 0.001f);
             }
-            if (Timer > 15)
+            if (Timer > 10)
             {
-                Destroy(this.gameObject);
+                Respawn();
             }
         }
     }
-    public override void Hit()
+    public override void Hit(float force,Transform form)
     {
         if (gothit != true)
         {
-            base.Hit();
+            base.Hit(force, form);
+            
             anim.SetBool("hit", true);
             gothit = true;
             StartCoroutine(Wait());
             SpawnTrash();
             
         }
+    }
+    public void Respawn()
+    {
+        anim.SetBool("hit", false);
+        gothit = false;
+        sr.color = new Color(1, 1, 1, 1);
+        transform.position = startpos;
+        transform.rotation = Quaternion.Euler(0,0,0);
+        rb.velocity = new Vector2(0,0);
+        rb.angularVelocity = 0;
+        
     }
     IEnumerator Wait()
     {
