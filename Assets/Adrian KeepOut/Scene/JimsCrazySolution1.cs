@@ -54,7 +54,7 @@ public class JimsCrazySolution1 : MonoBehaviour
         
 
         var heading = new Vector2(patrolPts[patrolPath+1].transform.position.x, patrolPts[patrolPath+1].transform.position.y) - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        turnTowardsTarget();
+        turnTowardsTarget(target);
         
 
     }
@@ -94,7 +94,7 @@ public class JimsCrazySolution1 : MonoBehaviour
 
                 if (patrolPath > nPoints - 1) patrolPath = 0;
 
-                turnTowardsTarget();
+                turnTowardsTarget(target);
 
             }
 
