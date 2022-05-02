@@ -12,6 +12,7 @@ public class TrashCan : PhysicsHitObject
     SpriteRenderer sr;
     public Vector3 startpos;
     Rigidbody2D rb;
+    public Sprite StartSprite;
     // Start is called before the first frame update
     private void Start()
     {
@@ -23,18 +24,11 @@ public class TrashCan : PhysicsHitObject
     // Update is called once per frame
     private void Update()
     {
-        if (gothit)
-        {
-            Timer += Time.deltaTime;
-            if (Timer > 5)
-            {
-                sr.color = new Color(1, 1, 1, sr.color.a - 0.001f);
-            }
-            if (Timer > 10)
-            {
-                Respawn();
-            }
-        }
+
+    }
+    public void OnBecameInvisible()
+    {
+        Respawn();
     }
     public override void Hit(float force,Transform form)
     {
@@ -52,13 +46,16 @@ public class TrashCan : PhysicsHitObject
     public void Respawn()
     {
         anim.SetBool("hit", false);
+        anim.Play("");
         gothit = false;
         sr.color = new Color(1, 1, 1, 1);
+        
         transform.position = startpos;
         transform.rotation = Quaternion.Euler(0,0,0);
         rb.velocity = new Vector2(0,0);
         rb.angularVelocity = 0;
-        
+        anim.Play("notknock");
+
     }
     IEnumerator Wait()
     {
