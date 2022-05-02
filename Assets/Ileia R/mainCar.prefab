@@ -354,7 +354,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2721517350728493597}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -371,7 +371,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2685542, y: 0.55141187}
+  m_Size: {x: 0.3, y: 0.55141187}
   m_EdgeRadius: 0
 --- !u!70 &9171394737543851863
 CapsuleCollider2D:
@@ -380,7 +380,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2721517350728493597}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8951c41f6c8734ba24127f7202de19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb2d: {fileID: 0}
 --- !u!1 &3427436042135231797
 GameObject:
   m_ObjectHideFlags: 0
