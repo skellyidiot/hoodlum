@@ -28,11 +28,11 @@ public class JimsCrazySolution1 : MonoBehaviour
     public Vector2 startLocation;
     public Vector2 pathDirection;
     public bool spawnedAtlastPos;
-
+    public float retreatDistance;
     public float speed2;
     public float stoppingDistance;
 
-    public Transform target;
+    public Transform target = null;
     
     void Start()
 
@@ -66,13 +66,41 @@ public class JimsCrazySolution1 : MonoBehaviour
     void Update()
 
     {
-        if(Vector2.Distance(transform.position, target.position) < stoppingDistance)
+        if(Vector2.Distance(transform.position, target.position) > stoppingDistance)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed2 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed2 * Time.deltaTime); distance = Vector3.Distance(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position);
+
+            float speed = distance * ratio * 10f;
+            pathTime = speed;
+            currentTime += Time.deltaTime;
+            NormalVector = new Vector2(-patrolPoints[patrolPath].position.y, patrolPoints[patrolPath].position.x);
+            NextPosion = new Vector2(patrolPoints[(patrolPath + 1) % nPoints].position.x, patrolPoints[(patrolPath + 1) % nPoints].position.y);
+            angle = Vector2.Dot(NormalVector, NextPosion);
+            currentTime += Time.deltaTime;
+
+
+            if (currentTime > speed)
+
+            {
+
+                currentTime = 0; //reset the timer
+                                 //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, currentAngle, 0.2f);
+                patrolPath++;
+
+
+                if (patrolPath > nPoints - 1) patrolPath = 0;
+
+                turnTowardsTarget(target);
+
+            }
+
+            transform.position = Vector3.Lerp(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position, (currentTime / (speed)));
+
         }
-        else
+        else if(Vector2.Distance(transform.position, target.position) < stoppingDistance && Vector2.Distance(transform.position, target.position) > retreatDistance)
         {
-            distance = Vector3.Distance(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position);
+
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed2 * Time.deltaTime); distance = Vector3.Distance(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position);
 
             float speed = distance * ratio * 10f;
             pathTime = speed;
@@ -100,6 +128,11 @@ public class JimsCrazySolution1 : MonoBehaviour
 
             transform.position = Vector3.Lerp(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position, (currentTime / (speed)));
         }
+        else if(Vector2.Distance(transform.position, target.position) < retreatDistance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, -speed2 * Time.deltaTime);
+        }
+        
         
         //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, currentAngle, 0.2f);
 
@@ -118,7 +151,7 @@ public class JimsCrazySolution1 : MonoBehaviour
 
         Debug.Log("------"); // line 54
 
-        transform.rotation = Quaternion.Euler(0, 0, angle - 90); // line 55
+        transform.rotation = Quaternion.Euler(0, 0, angle + 90); // line 55
         
         
        
