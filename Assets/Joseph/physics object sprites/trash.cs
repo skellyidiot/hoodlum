@@ -8,6 +8,7 @@ public class trash : MonoBehaviour
     bool f = false;
     public enum TRASHES { napkin,cig,burger,cup,turd,magazine,ketchup,plate,sus,arm,coal,weed,shoe,powder}
     public  Sprite[] sprites = new Sprite[14];
+    public bool despawn = true;
     SpriteRenderer sr;
     // Start is called before the first frame update
     public void Begin()
@@ -26,7 +27,7 @@ public class trash : MonoBehaviour
     }
     public void Update()
     {
-        if (f)
+        if (f && despawn)
         {
             Timer += Time.deltaTime;
             if (Timer > 1)

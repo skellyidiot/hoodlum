@@ -15,9 +15,9 @@ public class EnemyHit : PhysicsHitObject
     {
         
     }
-    public override void Hit(float force, Transform form)
+    public override void Hit(float force, Vector3 pos, float dir)
     {
-        base.Hit(force, form);
+        base.Hit(force, pos, dir);
         print("make hp down");
         print("falldown");
     }

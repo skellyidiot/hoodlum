@@ -30,11 +30,11 @@ public class TrashCan : PhysicsHitObject
     {
         Respawn();
     }
-    public override void Hit(float force,Transform form)
+    public override void Hit(float force,Vector3 pos ,float dir)
     {
         if (gothit != true)
         {
-            base.Hit(force, form);
+            base.Hit(force,pos , dir);
             
             anim.SetBool("hit", true);
             gothit = true;
@@ -69,5 +69,14 @@ public class TrashCan : PhysicsHitObject
             GameObject e = Instantiate(Trash,transform.position,transform.rotation);
             e.GetComponent<trash>().Begin();
         } 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "PhysicsObjects")
+        {
+            float vel = Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y);
+            float rot = Vector2.Angle(Vector2.up, rb.velocity.normalized);
+            collision.gameObject.GetComponent<PhysicsHitObject>().Hit(vel, transform.GetChild(0).position, rot);
+        }
     }
 }
