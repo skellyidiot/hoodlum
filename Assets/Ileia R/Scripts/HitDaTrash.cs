@@ -23,7 +23,9 @@ public class HitDaTrash : MonoBehaviour
         {
             Debug.Log("Hi");
             float vel = Mathf.Abs(rb2d.velocity.x) + Mathf.Abs(rb2d.velocity.y);
-            collision.gameObject.GetComponent<PhysicsHitObject>().Hit(vel,transform);
+            float rot = Vector2.Angle(Vector2.up, rb2d.velocity.normalized);
+            print(rot);
+            collision.gameObject.GetComponent<PhysicsHitObject>().Hit(vel,transform.position,rot);
         }
     }
 }

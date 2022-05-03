@@ -15,9 +15,9 @@ public class PhysicsHitObject : MonoBehaviour
     {
         
     }
-    public virtual void Hit(float force, Transform form)
+    public virtual void Hit(float force, Vector3 pos, float dir)
     {
         print("hit");
-        transform.rotation = form.rotation;
+        transform.eulerAngles = new Vector3 (0,0,dir);
     }
 }

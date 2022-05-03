@@ -13,6 +13,7 @@ public class Shoot : MonoBehaviour
     public bool hasBeenShot = false;
     public float time = 0.0f;
     public float interpolationPeriod = 0.0001f;
+    public AudioClip GunSHot;
     private void Start()
     {
         muzzle.SetActive(false);
@@ -26,6 +27,8 @@ public class Shoot : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                GetComponent<AudioSource>().clip = GunSHot;
+                GetComponent<AudioSource>().Play();
                 hasBeenShot = true;
                 Shooting();
                 //muzzle.SetActive(true);

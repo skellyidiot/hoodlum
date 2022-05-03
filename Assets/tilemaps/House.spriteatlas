@@ -90,7 +90,9 @@ SpriteAtlas:
   - {fileID: 909444148276766886, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
   - {fileID: -1850680290757873719, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
   - {fileID: -3634398366838870730, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
+  - {fileID: -7310867040226725890, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
   - {fileID: 1705411122146539360, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
+  - {fileID: 4987337381440321552, guid: 571270b7cf616f54a9f17a18a918bfcd, type: 3}
   m_PackedSpriteNamesToIndex:
   - walls_7
   - walls_6
@@ -135,6 +137,8 @@ SpriteAtlas:
   - tile_map_0
   - tile_map_3
   - tile_map_2
+  - tile_map_5
   - tile_map_4
+  - tile_map_6
   m_Tag: House
   m_IsVariant: 0

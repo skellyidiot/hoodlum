@@ -21,6 +21,7 @@ TagManager:
   - goods
   - basket
   - PhysicsObjects
+  - Door
   layers:
   - Default
   - TransparentFX
