@@ -31,7 +31,9 @@ public class TaskmanTXTbox : MonoBehaviour
     {
         RootObjectOfHFactsTextBox.SetActive(false);
 
-        txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Hey, I am task man, which task do you want to do? \n 1.) Go infiltrate the mob boss's house and steal money from the safe \n 2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation \n 3.) Deliver my package to ____ in 60 seconds, you might need to get on your feet!";
+        txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Hey, I am task man, which task do you want to do? " +
+            "\n 1.) Go infiltrate the mob boss's house and steal money and items to give back to the people he stole from" +
+            " \n 2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation to find \nout where he keeps the rest of his money\n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 seconds";
     }
 
     void Update()
@@ -70,27 +72,27 @@ public class TaskmanTXTbox : MonoBehaviour
 
         if (doneTask1 == true && doneTask2 == false && doneTask3 == false && doingTask2 == false && doingTask3 == false)
         {
-            txt.text = "good job doing task 1, now pick one of these tasks \n 2.) Drive leader to his destination \n 3.) Go from ___ to ___ in 60 seconds";
+            txt.text = "good job doing task 1, now pick one of these tasks \n2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation to find \nout where he keeps the rest of his mone \n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 secondss";
         }
         if (doneTask1 == true && doneTask2 == true && doneTask3 == false && doingTask3 == false)
         {
-            txt.text = "good job doing task 1 and two, you can only do this task: \n 3.) Go from ___ to ___ in 60 seconds";
+            txt.text = "good job doing task 1 and 2, you can only do this task: \n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 seconds";
         }
         if (doneTask1 == false && doneTask2 == true && doneTask3 == false && doingTask3 == false && doingTask1 == false)
         {
-            txt.text = "good job doing task 2, you can only do this task: \n 1.) Go infiltrate the leaders house and steal money from the safe   \n 3.) Go from ___ to ___ in 60 seconds";
+            txt.text = "good job doing task 2, you can only do this task: \n  1.) Go infiltrate the mob boss's house and steal money and items to give back to the people he stole from \n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 seconds";
         }
         if (doneTask1 == true && doneTask3 == true && doneTask2 != true && doingTask2 != true)
         {
-            txt.text = "Good job doing task 1 and task 3, now do this task: \n 2.) Drive leader to his destination)";
+            txt.text = "Good job doing task 1 and task 3, now do this task: \n2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation to find \nout where he keeps the rest of his mone)";
         }
         if(doneTask2 == true && doneTask3 == true && doneTask1 != true && doingTask1 != true)
         {
-            txt.text = "Good job doing task 2 and task 3, now do this task: \n 1.) Go infiltrate the leaders house and steal money from the safe  ";
+            txt.text = "Good job doing task 2 and task 3, now do this task: \n  1.) Go infiltrate the mob boss's house and steal money and items to give back to the people he stole from ";
         }
         if (doneTask2 != true && doneTask3 == true && doneTask1 != true && doingTask1 != true && doingTask2 != true)
         {
-            txt.text = "Good job doing task 3, now do this task: \n 1.) Go infiltrate the leaders house and steal money from the safe  \n 2.) Drive leader to his destination)";
+            txt.text = "Good job doing task 3, now do this task: \n 1.) Go infiltrate the mob boss's house and steal money and items to give back to the people he stole from)";
         }
         if(doneTask1 == true && doneTask2 == true && doneTask3 == true)
         {

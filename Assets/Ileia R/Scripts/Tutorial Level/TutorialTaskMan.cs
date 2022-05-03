@@ -27,7 +27,7 @@ public class TutorialTaskMan : MonoBehaviour
         RootObjectOfHFactsTextBox.SetActive(false);
 
         txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "The name's Jose. I'll give you a job, and you do it. " +
-            "\nYou ready to help the community now? \n \nPress the corresponding key to answer: \n1.) Yes \n2.) No";
+            "\nYou ready to help the community now? \n \nPress the corresponding key to answer: \n1.) Let's do this! \n2.) I know what to do";
      }
 
     private void Update()
@@ -43,7 +43,7 @@ public class TutorialTaskMan : MonoBehaviour
             }
             if (isTalking == true && Input.GetKeyDown("2"))
             {
-                SceneManager.LoadScene("basic");
+                SceneManager.LoadScene("mainLevl");
             }
         }
 
@@ -51,14 +51,14 @@ public class TutorialTaskMan : MonoBehaviour
         {
             gunTxt.SetActive(false);
             txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Good job, you're ready to go. Let me know when you \nwanna get going." +
-                "\n\n1.) Let's Go \n2.) I'll stay a bit";
+                "\n\n1.) Let's Go \n2.) I wanna do this again!";
             if (isTalking == true && Input.GetKeyDown("1"))
             {
-                SceneManager.LoadScene("basic");
+                SceneManager.LoadScene("mainLevl");
             }
             if (isTalking == true && Input.GetKeyDown("2"))
             {
-                SceneManager.LoadScene("basic");
+                SceneManager.LoadScene("TutorialLevel");
             }
         }
         

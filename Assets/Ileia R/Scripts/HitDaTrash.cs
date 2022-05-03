@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class HitDaTrash : MonoBehaviour
 {
+    public Rigidbody2D rb2d;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -22,7 +22,10 @@ public class HitDaTrash : MonoBehaviour
         if(collision.gameObject.tag == "PhysicsObjects")
         {
             Debug.Log("Hi");
-            collision.gameObject.GetComponent<PhysicsHitObject>().Hit();
+            float vel = Mathf.Abs(rb2d.velocity.x) + Mathf.Abs(rb2d.velocity.y);
+            float rot = Vector2.Angle(Vector2.up, rb2d.velocity.normalized);
+            print(rot);
+            collision.gameObject.GetComponent<PhysicsHitObject>().Hit(vel,transform.position,rot);
         }
     }
 }

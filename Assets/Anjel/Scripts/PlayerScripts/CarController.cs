@@ -26,7 +26,14 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey("space"))
+        {
+            driftFactor = 1F;
+        }
+        else
+        {
+            driftFactor = .95f;
+        }
     }
 
     private void FixedUpdate()
