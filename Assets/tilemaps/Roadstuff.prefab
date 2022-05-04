@@ -191,6 +191,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -75, y: 29, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 67
+      m_TileSpriteIndex: 67
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -80, y: 30, z: 0}
     second:
       serializedVersion: 2
@@ -206,6 +216,46 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 59
       m_TileSpriteIndex: 61
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -75, y: 30, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 63
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -74, y: 30, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 64
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -73, y: 30, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 65
+      m_TileSpriteIndex: 65
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -72, y: 30, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 66
+      m_TileSpriteIndex: 66
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -673,10 +723,10 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 1759ab8a87df133418e10e95e0d56b3b, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 1c3a3af3a48bd594fa100b27b0592f76, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 9f8fd0e67f317734d9aa9be1f6652508, type: 2}
   - m_RefCount: 1
@@ -803,6 +853,12 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b287e3499c45a1a4da596a0cdbc1147f, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 332bee5e6c6ebff4b92bd7a74450b0c5, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: ba0ca5d323968c648adb8cb59d90624f, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 29745e5416ee13247804624006f38451, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: f22dd420bcdf52f47a3b4fb5d7493fab, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 6310075732596040423, guid: 229b1ae4384c9a14085241b27d76cdee,
@@ -990,8 +1046,23 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 5573806032118053421, guid: 5bae6a24c264bb747907deb71d1d56b5,
       type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -1645790573692077454, guid: 0862a3b74f770c9448efb8b44fdb432f,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 5060086438016594901, guid: 0862a3b74f770c9448efb8b44fdb432f,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -1468674309449289703, guid: 0862a3b74f770c9448efb8b44fdb432f,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 3742198688848082278, guid: 0862a3b74f770c9448efb8b44fdb432f,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 5930322848469110461, guid: 0862a3b74f770c9448efb8b44fdb432f,
+      type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 63
+  - m_RefCount: 68
     m_Data:
       e00: 1
       e01: 0
@@ -1010,7 +1081,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 63
+  - m_RefCount: 68
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: -2.586088e-23, g: -2.586088e-23, b: -2.586088e-23, a: -2.586088e-23}
