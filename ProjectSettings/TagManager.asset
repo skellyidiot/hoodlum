@@ -23,6 +23,7 @@ TagManager:
   - PhysicsObjects
   - Door
   - people
+  - Wall
   layers:
   - Default
   - TransparentFX
