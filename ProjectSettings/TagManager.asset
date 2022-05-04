@@ -22,6 +22,7 @@ TagManager:
   - basket
   - PhysicsObjects
   - Door
+  - people
   layers:
   - Default
   - TransparentFX
