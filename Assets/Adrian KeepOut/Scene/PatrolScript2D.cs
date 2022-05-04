@@ -33,11 +33,16 @@ public class PatrolScript2D : MonoBehaviour
     public Vector2 startLocation;
     public Vector2 pathDirection;
     public bool spawnedAtlastPos;
-
+    public List<GameObject> peopleList = new List<GameObject>();
     void Start()
 
     {
-        
+        foreach (GameObject NPC in GameObject.FindGameObjectsWithTag("people"))
+        {
+
+            patrolPts.Add(NPC.transform);
+        }
+
         patrolPath = Random.Range(0, patrolPts.Count);
 
         Debug.Log(patrolPath);
