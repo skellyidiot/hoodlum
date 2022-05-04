@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AllTasks : MonoBehaviour
 {
+    public GameObject rain;
     public GameObject arrow;
     //task 1
     public static bool isInBuilding;
@@ -55,6 +56,16 @@ public class AllTasks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Task 1
+        
+        if (isInBuilding)
+        {
+            rain.SetActive(false);
+        }
+        else
+        {
+            //rain.SetActive(true);
+        }
         if (hasInfo == true)
         {
             DropOfftext.SetActive(true);
@@ -97,7 +108,10 @@ public class AllTasks : MonoBehaviour
             Destroy(DropOfftext);
             Destroy(moneyText);
         }
-        
+        if(collision.gameObject.tag == "DoorOut")
+        {
+            isInBuilding = false;
+        }
         if (collision.gameObject.tag == "DoorIn")
         {
             isInBuilding = true;

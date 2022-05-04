@@ -6,6 +6,9 @@ using Cinemachine;
 
 public class Car : MonoBehaviour
 {
+    public AudioClip radio;
+    AudioSource audioSource;
+
     public static bool isCollidedLeft;
     public static bool isCollidedRight;
 
@@ -44,6 +47,8 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         isDriving = false;
         RootObjectOfHFactsTextBox.SetActive(false);
 
@@ -72,6 +77,8 @@ public class Car : MonoBehaviour
     {
         if(isDriving == true)
         {
+            RadioGetInCar();
+
             hasbeenincar = true;
 
             RootObjectOfHFactsTextBox.SetActive(false);
@@ -142,6 +149,8 @@ public class Car : MonoBehaviour
         }
         if(isDriving == false)
         {
+            RadioGetOUt();
+
             this.GetComponent<PlayerMovement>().enabled = true;
             this.GetComponent<Shoot>().enabled = true;
             this.GetComponent<CarController>().enabled = false;
@@ -214,5 +223,14 @@ public class Car : MonoBehaviour
     private void PauseForABit()
     {
         //isDriving = true;
+    }
+
+    void RadioGetInCar()
+    {
+        audioSource.Play();
+    }
+    void RadioGetOUt()
+    {
+        audioSource.Pause();
     }
 }
