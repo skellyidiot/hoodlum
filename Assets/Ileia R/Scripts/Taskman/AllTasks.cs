@@ -135,7 +135,8 @@ public class AllTasks : MonoBehaviour
         }
         if (Car.isDriving == true && collision.gameObject.tag == "Leader")
         {
-            leader.SetActive(false);
+            //leader.SetActive(false);
+            Destroy(leader);
             leader.transform.position = Car.car.transform.position;
 
             LeaderInCar = true;
@@ -148,7 +149,7 @@ public class AllTasks : MonoBehaviour
         //task 2
         if(collision.gameObject.tag == "DropOff" && LeaderInCar == true)
         {
-            Destroy(leader);
+            //Destroy(leader);
             Destroy(dropOff);
             TaskmanTXTbox.doneTask2 = true;
         }

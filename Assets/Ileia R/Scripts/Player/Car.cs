@@ -47,7 +47,7 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         isDriving = false;
         RootObjectOfHFactsTextBox.SetActive(false);
@@ -77,7 +77,7 @@ public class Car : MonoBehaviour
     {
         if(isDriving == true)
         {
-            RadioGetInCar();
+            //RadioGetInCar();
 
             hasbeenincar = true;
 
@@ -202,6 +202,7 @@ public class Car : MonoBehaviour
 
     private void EnterCar()
     {
+        RadioGetInCar();
         gameObject.transform.position = car.transform.position;
         gameObject.transform.rotation = Quaternion.Euler(carXR, carYR, carZR);
         car.transform.SetParent(gameObject.transform);
@@ -228,9 +229,11 @@ public class Car : MonoBehaviour
     void RadioGetInCar()
     {
         audioSource.Play();
+        Debug.Log("PLAYING RADIO!!");
     }
     void RadioGetOUt()
     {
         audioSource.Pause();
+        Debug.Log("Out of car!!");
     }
 }
