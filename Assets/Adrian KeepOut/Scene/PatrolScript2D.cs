@@ -111,7 +111,12 @@ public class PatrolScript2D : MonoBehaviour
     }
 
 
-
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.gameObject.tag == "car")
+            
+    //        Destroy(this.gameObject);
+    //}
     public void turnTowardsTarget()
 
     {

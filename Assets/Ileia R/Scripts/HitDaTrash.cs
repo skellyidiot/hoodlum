@@ -10,10 +10,17 @@ public class HitDaTrash : MonoBehaviour
     void Start()
     {
     }
-
+    bool f = false;
     // Update is called once per frame
+    public float timer = 0.0f;
+
     void Update()
     {
+        if(f == true)
+        {
+            timer += Time.deltaTime;
+            float seconds = timer % 60;
+        }
         
     }
 
@@ -26,6 +33,20 @@ public class HitDaTrash : MonoBehaviour
             float rot = Vector2.Angle(Vector2.up, rb2d.velocity.normalized);
             print(rot);
             collision.gameObject.GetComponent<PhysicsHitObject>().Hit(vel,transform.position,rot);
+        }else if(collision.gameObject.tag == "NPC")
+        {
+            collision.gameObject.GetComponent<PatrolScript2D>().enabled = false;
         }
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        f = true;
+        if(timer > 3)
+        {
+            collision.gameObject.GetComponent<PatrolScript2D>().enabled = true;
+            timer = 0f;
+            f = false;
+        }
+    }
+    
 }
