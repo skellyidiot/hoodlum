@@ -36,7 +36,7 @@ public class PointToTargert : MonoBehaviour
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
         }
-        if (AllTasks.isInBuilding == true && AllTasks.hasInfo == false)
+        if (AllTasks.isInBuilding == true && AllTasks.hasInfo == false && TaskmanTXTbox.doneTask1 == false)
         {
             sr.enabled = true;
             Vector3 vectorToTarget = transform.position - safe.transform.position;

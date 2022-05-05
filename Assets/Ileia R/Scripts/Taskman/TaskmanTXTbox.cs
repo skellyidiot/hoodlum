@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class TaskmanTXTbox : MonoBehaviour
@@ -97,6 +98,7 @@ public class TaskmanTXTbox : MonoBehaviour
         if(doneTask1 == true && doneTask2 == true && doneTask3 == true)
         {
             txt.text = "Good job you are done!";
+            SceneManager.LoadScene("win");
         }
     }
 
