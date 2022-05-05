@@ -139,4 +139,26 @@ public class PatrolScript2D : MonoBehaviour
 
     }
 
+    public void turnTowardsTarget(Vector2 start)
+
+    {
+
+
+
+        Vector2 startLocation = start;
+
+        Vector2 endLocation = patrolPoints[(patrolPath + 1) % nPoints].position;
+
+        Vector2 pathDirection = endLocation - startLocation;
+
+        float angle = Mathf.Atan2(pathDirection.y, pathDirection.x) * Mathf.Rad2Deg;
+
+        Debug.Log(pathDirection + " " + angle);
+
+        Debug.Log("------");
+
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+
+    }
+
 }
