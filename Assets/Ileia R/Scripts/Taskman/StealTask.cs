@@ -51,6 +51,7 @@ public class StealTask : MonoBehaviour
             isInBuilding = false;
             hasAlreadyGoneIn = true;
             gameObject.transform.position = SpawnNOTINBUILDING.transform.position;
+            TaskmanTXTbox.doneTask1 = true;
         }
     }
     

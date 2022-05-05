@@ -16,8 +16,8 @@ public class PatrolScript2D : MonoBehaviour
 
     Transform[] patrolPoints = new Transform[] { };
 
-    public int patrolPath;
-
+    public int patrolPath = 0;
+    public GameObject NPC;
     public float pathTime;
     public float speed = 2.0f;
     public float currentTime;
@@ -37,25 +37,27 @@ public class PatrolScript2D : MonoBehaviour
     void Start()
 
     {
+
+        
         foreach (GameObject NPC in GameObject.FindGameObjectsWithTag("people"))
         {
 
             patrolPts.Add(NPC.transform);
         }
 
-        patrolPath = Random.Range(0, patrolPts.Count);
+       
 
-        Debug.Log(patrolPath);
+        //Debug.Log(patrolPath);
 
-        patrolPoints = patrolPts.ToArray();
+        //patrolPoints = patrolPts.ToArray();
 
-        nPoints = patrolPoints.Length;
+        //nPoints = patrolPoints.Length;
 
-        distance = Vector3.Distance(patrolPts[0].transform.position, patrolPts[1].transform.position);
+        //distance = Vector3.Distance(patrolPts[0].transform.position, patrolPts[1].transform.position);
 
-        ratio = (distance / pathTime) * Time.deltaTime;
+        //ratio = (distance / pathTime) * Time.deltaTime;
 
-        turnTowardsTarget();
+        //turnTowardsTarget();
 
 
 
