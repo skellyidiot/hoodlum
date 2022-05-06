@@ -54,9 +54,9 @@ public class PatrolScri2pt2D : MonoBehaviour
 
         //nPoints = patrolPoints.Length;
 
-        //distance = Vector3.Distance(patrolPts[0].transform.position, patrolPts[1].transform.position);
+        distance = Vector3.Distance(patrolPts[0].transform.position, patrolPts[1].transform.position);
 
-        //ratio = (distance / pathTime) * Time.deltaTime;
+        ratio = (distance / pathTime) * Time.deltaTime;
 
         //turnTowardsTarget();
 
