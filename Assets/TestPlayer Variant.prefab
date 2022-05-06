@@ -236,9 +236,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432f36caba2f8a349bcf458fb7638a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rain: {fileID: 0}
+  arrow: {fileID: 0}
   infosteal: {fileID: 0}
+  DropOfftext: {fileID: 0}
+  basket: {fileID: 0}
+  moneyText: {fileID: 0}
   leader: {fileID: 0}
-  LeaderInCar: 0
   dropOff: {fileID: 0}
   taskmanScript: {fileID: 0}
   carScript: {fileID: 0}
@@ -256,10 +260,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1632b654c55dc714ca1259cb6c978877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radio: {fileID: 0}
+  GetOutLocLeft: {fileID: 0}
+  GetOutLocRight: {fileID: 0}
   smoke: {fileID: 0}
   t: {fileID: 0}
   vR: {x: 0, y: 0, z: 0}
   cm: {fileID: 0}
+  cm2: {fileID: 0}
   GetOut: {fileID: 0}
   RootObjectOfHFactsTextBox: {fileID: 0}
 --- !u!114 &4441827827095735422
@@ -276,6 +284,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   stamina: 10
+  IsRunning: 0
+  resting: 0
   rb: {fileID: 4441827827095735420}
   cam: {fileID: 0}
 --- !u!114 &4441827827095735423
@@ -293,7 +303,12 @@ MonoBehaviour:
   firePoint: {fileID: 4441827826415103440}
   bulletprefab: {fileID: 2346293992769063925, guid: ef89daabde5cda140b8dc0c294c6a27d,
     type: 3}
+  muzzle: {fileID: 0}
   force: 20
+  hasBeenShot: 0
+  time: 0
+  interpolationPeriod: 0.0001
+  GunSHot: {fileID: 0}
 --- !u!50 &4441827827095735420
 Rigidbody2D:
   serializedVersion: 4
@@ -343,10 +358,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a374a82ff0e8c24c8f1db735f5ba503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 0
+  timeToShow: 1
+  isShowing: 0
+  transition: {fileID: 0}
   SpawnINBUILDING: {fileID: 0}
   SpawnNOTINBUILDING: {fileID: 0}
   isInBuilding: 0
   hasAlreadyGoneIn: 0
+  arrow: {fileID: 0}
+  arrowPointAt: {fileID: 0}
 --- !u!95 &4252825742984001841
 Animator:
   serializedVersion: 3
