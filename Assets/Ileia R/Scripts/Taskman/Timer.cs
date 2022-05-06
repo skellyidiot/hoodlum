@@ -26,6 +26,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //time = AllTasks.timeLeft;
         string textTime = string.Format("{0}", Mathf.RoundToInt(time));
 
         //if(time <= 0 && TaskmanTXTbox.doneTask2 == false)
@@ -33,18 +34,19 @@ public class Timer : MonoBehaviour
         //    stopTimer = true;
         //    sliderObject.SetActive(false);
         //}
-        if(TaskmanTXTbox.doingTask3 == true)
+        if(TaskmanTXTbox.doingTask3 == true && TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask2 == false)
         {
-            //time -= Time.deltaTime;
-            time = AllTasks.timeLeft;
+            time -= Time.deltaTime;
+            //time = AllTasks.timeLeft;
             sliderObject.SetActive(true);
             timerText.text = textTime;
             timerSlider.value = Mathf.RoundToInt(time);
+            Debug.Log(AllTasks.timeLeft);
         }
         if (TaskmanTXTbox.doneTask3 == true)
         {
-            stopTimer = true;
-            time = 60;
+            //stopTimer = true;
+            //time = 60;
             sliderObject.SetActive(false);
         }
         if(time == 0)
