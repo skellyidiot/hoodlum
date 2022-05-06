@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float stamina = 10;
     public bool IsRunning = false;
     public static bool HasGunOut = false;
+    public GameObject HPBar;
+    public GameObject StaminaWheel;
 
     public static int Hp = 100;
 
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
         ani = gameObject.GetComponent<Animator>();
+        HPBar.GetComponent<Slider>().value = Hp / 100;
     }
 
     // Update is called once per frame
@@ -38,15 +42,21 @@ public class PlayerMovement : MonoBehaviour
     {
         print("Dead");
     }
+    public void Hit(int damage)
+    {
+        Hp -= damage;
+        HPBar.GetComponent<Slider>().value = Hp / 100;
+        if (Hp <= 0)
+        {
+            Die();
+        }
+    }
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        if (Hp <= 0)
-        {
-            Die();
-        }
+
 
         //sprinting dont work is lame
 
@@ -55,10 +65,12 @@ public class PlayerMovement : MonoBehaviour
             IsRunning = true;
            moveSpeed = RUNSPEED;
            ani.speed = 2;
+
         }
         if (IsRunning == true)
         {
-            stamina -= 0.5f * Time.deltaTime;
+            stamina -= 0.8f * Time.deltaTime;
+            StaminaWheel.SetActive(true);
         }
         if (Input.GetKeyUp(KeyCode.LeftShift) || stamina <= 0)
         {
@@ -70,15 +82,32 @@ public class PlayerMovement : MonoBehaviour
         if (stamina <= 0)
         {
             resting = true;
+            StaminaWheel.GetComponent<Image>().color = Color.red;
+            
         }
         if (stamina >= 10)
         {
+
+            StaminaWheel.SetActive(false);
+        }
+        if (resting && stamina >= 2.5)
+        {
             resting = false;
+            StaminaWheel.GetComponent<Image>().color = Color.green;
         }
         if (IsRunning == false && stamina < 10)
         {
-          stamina += 0.5f * Time.deltaTime;
+            if (resting)
+            {
+                stamina += 0.5f * Time.deltaTime;
+            }
+            else
+            {
+                stamina += 0.8f * Time.deltaTime;
+            }
+            
         }
+        StaminaWheel.GetComponent<Image>().fillAmount = stamina / 10;
 
 
         if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("Menu");
