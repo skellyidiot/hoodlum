@@ -12,6 +12,13 @@ public class PlayerMovement : MonoBehaviour
     public bool IsRunning = false;
     public static bool HasGunOut = false;
 
+    public static int Hp = 100;
+
+    public bool resting = false;
+
+    const float RUNSPEED = 10;
+    const float WALKSPEED = 5;
+
     public Rigidbody2D rb;
     public Camera cam;
     Animator ani;
@@ -27,33 +34,52 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+    void Die()
+    {
+        print("Dead");
+    }
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        if (Hp <= 0)
+        {
+            Die();
+        }
+
         //sprinting dont work is lame
 
-        //if(Input.GetKeyDown(KeyCode.LeftShift) && stamina >= 1)
-        //{
-        //    IsRunning = true;
-        //    moveSpeed *= 2;
-        //    ani.speed *= 2;
-        //}
-        //if (Input.GetKeyUp(KeyCode.LeftShift) || stamina <= 0.1f)
-        //{
-        //    IsRunning = false;
-        //    moveSpeed *= 0.5f;
-        //    ani.speed *= 0.5f;
-        //}
-        //if(IsRunning == true || stamina >= 1)
-        //{
-        //    stamina -= 0.01f;
-        //}
-        //if (IsRunning == false && stamina < 10)
-        //{
-        //    stamina += 0.05f;
-        //}
+        if(Input.GetKeyDown(KeyCode.LeftShift) && stamina >= 0 && resting == false)
+        {
+            IsRunning = true;
+           moveSpeed = RUNSPEED;
+           ani.speed = 2;
+        }
+        if (IsRunning == true)
+        {
+            stamina -= 0.5f * Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift) || stamina <= 0)
+        {
+           IsRunning = false;
+            moveSpeed = WALKSPEED;
+            ani.speed = 1;
+            
+        }
+        if (stamina <= 0)
+        {
+            resting = true;
+        }
+        if (stamina >= 10)
+        {
+            resting = false;
+        }
+        if (IsRunning == false && stamina < 10)
+        {
+          stamina += 0.5f * Time.deltaTime;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("Menu");
 
