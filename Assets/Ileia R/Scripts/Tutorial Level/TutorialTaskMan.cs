@@ -32,12 +32,12 @@ public class TutorialTaskMan : MonoBehaviour
 
     private void Update()
     {
-        if (firstTask == false && tutorialTriggers.enemyCount >= 5)
+        if (firstTask == false && tutorialTriggers.enemyCount >= 3)
         {
             if (isTalking == true && Input.GetKeyDown("1"))
             {
                 gunTxt.SetActive(true);
-                txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Good. Let's get you started. There are five mafia \nmembers around the streets. " +
+                txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Good. Let's get you started. There are three mafia \nmembers around the streets. " +
                     "\n\nGo take them out and come back to me.";
                 firstTask = true;
             }

@@ -112,6 +112,7 @@ MonoBehaviour:
   - {fileID: 1966253585544947504, guid: 717ad691d323f4a47a34904437098232, type: 3}
   - {fileID: 5656600654700784669, guid: 717ad691d323f4a47a34904437098232, type: 3}
   - {fileID: 8553040187859461730, guid: 717ad691d323f4a47a34904437098232, type: 3}
+  despawn: 1
 --- !u!50 &7400255168770236811
 Rigidbody2D:
   serializedVersion: 4
@@ -124,7 +125,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.74
+  m_Mass: 0.1
   m_LinearDrag: 1
   m_AngularDrag: 0.1
   m_GravityScale: 0

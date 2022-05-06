@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Animations;
 
 
 public class TaskmanTXTbox : MonoBehaviour
@@ -14,6 +15,7 @@ public class TaskmanTXTbox : MonoBehaviour
     public Text txt;
     public GameObject RootObjectOfHFactsTextBox;
     public bool isTalking;
+    public Animator anim;
 
     public static bool doingTask1;
     public static bool doingTask2;
@@ -98,6 +100,8 @@ public class TaskmanTXTbox : MonoBehaviour
         if(doneTask1 == true && doneTask2 == true && doneTask3 == true)
         {
             txt.text = "Good job you are done!";
+            anim.Play("fadeOut");
+            System.Threading.Thread.Sleep(1000);
             SceneManager.LoadScene("win");
         }
     }

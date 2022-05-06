@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432f36caba2f8a349bcf458fb7638a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rain: {fileID: 0}
   arrow: {fileID: 0}
   infosteal: {fileID: 0}
   DropOfftext: {fileID: 0}
@@ -157,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1632b654c55dc714ca1259cb6c978877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radio: {fileID: 0}
   GetOutLocLeft: {fileID: 0}
   GetOutLocRight: {fileID: 0}
   smoke: {fileID: 0}
@@ -181,6 +183,7 @@ MonoBehaviour:
   moveSpeed: 5
   stamina: 10
   IsRunning: 0
+  resting: 0
   rb: {fileID: 7019002722345139735}
   cam: {fileID: 0}
 --- !u!114 &7019002722345139732
@@ -238,7 +241,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
