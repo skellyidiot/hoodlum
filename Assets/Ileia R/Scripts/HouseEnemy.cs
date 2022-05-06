@@ -46,4 +46,12 @@ public class HouseEnemy : MonoBehaviour
         }
         return val;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log("HIT WITH BULLET!");
+            Destroy(gameObject);
+        }
+    }
 }

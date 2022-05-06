@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Hit(int damage)
     {
-        Hp -= damage;
+        Hp -= 20;
         HPBar.GetComponent<Slider>().value = Hp / 100;
         if (Hp <= 0)
         {

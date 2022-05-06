@@ -131,7 +131,7 @@ public class PatrolScript2D : MonoBehaviour
 
         float angle = Mathf.Atan2(pathDirection.y, pathDirection.x) * Mathf.Rad2Deg;
 
-        Debug.Log(pathDirection + " " + angle);
+        //Debug.Log(pathDirection + " " + angle);
 
         Debug.Log("------");
 
