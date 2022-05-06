@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HitDaTrash : MonoBehaviour
 {
+    public AudioSource Car;
     public GameObject gos;
     public Rigidbody2D rb2d;
     // Start is called before the first frame update
@@ -32,16 +33,26 @@ public class HitDaTrash : MonoBehaviour
         }
         else if (collision.gameObject.tag == "NPC")
         {
+            
             collision.gameObject.tag = "Hit";
-            collision.gameObject.GetComponent<PatrolScript2D>().enabled = false;
-            PatrolScript2D col2D = collision.gameObject.GetComponent<PatrolScript2D>();
-            Transform loc = collision.gameObject.GetComponent<Transform>();
-            StartCoroutine(YES(col2D, loc));
-            collision.gameObject.tag = "NPC";
+            if(collision.gameObject.tag == "Hit"){
+                Destroy(collision.gameObject);
+                adfa.NPCCOUNT--;
+            }
+
+           
+            Debug.Log(adfa.NPCCOUNT);
+            //collision.gameObject.GetComponent<PatrolScript2D>().enabled = false;
+
+            //PatrolScript2D col2D = collision.gameObject.GetComponent<PatrolScript2D>();
+            //Transform loc = collision.gameObject.GetComponent<Transform>();
+            ////StartCoroutine(YES(col2D, loc));
+            //collision.gameObject.tag = "NPC";
         }
 
 
     }
+    
 
     //private void OnCollisionExit2D(Collision2D collision)
     //{
@@ -51,12 +62,16 @@ public class HitDaTrash : MonoBehaviour
     IEnumerator YES(PatrolScript2D collision, Transform location)
     {
         yield return new WaitForSeconds(3);
-        //gos = GameObject.FindGameObjectWithTag("Hit");
+        //gos = GameObject.FindGameObjectWithTag("Hit"); //PLAY SOUND
         collision.enabled = true;
         collision.turnTowardsTarget(new Vector2(location.transform.position.x, location.transform.position.y));
         Debug.Log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
         
         
     }
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Car.mute = false;
+        Car.Play();
+    }
 }

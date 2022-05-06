@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 
-public class PatrolScript2D : MonoBehaviour
+public class PatrolScri2pt2D : MonoBehaviour
 
 {// Start is called before the first frame update
 
@@ -19,9 +19,10 @@ public class PatrolScript2D : MonoBehaviour
     public int patrolPath = 0;
     public GameObject NPC;
     public float pathTime;
-    public float speed = 2.0f;
+    public static float speed = 2.0f;
     public float currentTime;
     public float angle;
+
     int nPoints;
     public float ratio;
     private float distance;
@@ -72,7 +73,7 @@ public class PatrolScript2D : MonoBehaviour
     {
         distance = Vector3.Distance(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position);
 
-        float speed = distance * ratio * 10f;
+        speed = distance * ratio * 10f;
         pathTime = speed;
         currentTime += Time.deltaTime;
         NormalVector = new Vector2(-patrolPoints[patrolPath].position.y, patrolPoints[patrolPath].position.x);

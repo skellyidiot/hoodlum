@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 
-public class PatrolScript2D1 : MonoBehaviour
+public class PatrolScript2D : MonoBehaviour
 
 {// Start is called before the first frame update
 
@@ -114,7 +114,7 @@ public class PatrolScript2D1 : MonoBehaviour
     //private void OnTriggerEnter2D(Collider2D other)
     //{
     //    if (other.gameObject.tag == "car")
-            
+
     //        Destroy(this.gameObject);
     //}
     public void turnTowardsTarget()
@@ -135,7 +135,7 @@ public class PatrolScript2D1 : MonoBehaviour
 
         Debug.Log("------");
 
-        transform.rotation = Quaternion.Euler(0, 0, angle-90);
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90);
 
     }
 
