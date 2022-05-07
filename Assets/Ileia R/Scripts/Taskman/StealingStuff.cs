@@ -12,20 +12,20 @@ public class StealingStuff : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RootObjectOfHFactsTextBox.SetActive(false);
+        //RootObjectOfHFactsTextBox.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(TaskmanTXTbox.doingTask1 == true)
-        {
-            RootObjectOfHFactsTextBox.SetActive(true);
-        }
-        if(TaskmanTXTbox.doneTask1 == true)
-        {
-            RootObjectOfHFactsTextBox.SetActive(false);
-        }
+        //if(TaskmanTXTbox.doingTask1 == true)
+        //{
+        //    RootObjectOfHFactsTextBox.SetActive(true);
+        //}
+        //if(TaskmanTXTbox.doneTask1 == true)
+        //{
+        //    RootObjectOfHFactsTextBox.SetActive(false);
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -36,7 +36,7 @@ public class StealingStuff : MonoBehaviour
             int randomMoney = Random.Range(50, 1000);
             Money.money += randomMoney;
             Debug.Log(randomMoney);
-            txt.text = "$" + Money.money;
+            Money.txt.text = "$" + Money.money;
         }
     }
 }

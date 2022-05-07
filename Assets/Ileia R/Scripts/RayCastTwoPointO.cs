@@ -13,7 +13,7 @@ public class RayCastTwoPointO : MonoBehaviour
     public float force = 20f;
 
     public float ShootTimer;
-    public float viewdist = 7f;
+    public float viewdist = 8f;
 
     bool agro;
     float agrotimer = 0;
@@ -40,13 +40,17 @@ public class RayCastTwoPointO : MonoBehaviour
         RaycastHit2D hit4 = Physics2D.Raycast(transform.position, rotateVector(transform.up, 22.5f), viewdist);
         RaycastHit2D hit5 = Physics2D.Raycast(transform.position, rotateVector(transform.up, 11.25f), viewdist);
         RaycastHit2D hit6 = Physics2D.Raycast(transform.position, rotateVector(transform.up, -11.25f), viewdist);
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * 7f, Color.green);
+        RaycastHit2D hit7 = Physics2D.Raycast(transform.position, rotateVector(transform.up, -67.5f), viewdist);
+        RaycastHit2D hit8 = Physics2D.Raycast(transform.position, rotateVector(transform.up, 67.5f), viewdist);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * viewdist, Color.green);
         Debug.DrawRay(transform.position, rotateVector(transform.TransformDirection(Vector2.up),-45) * viewdist, Color.green);
         Debug.DrawRay(transform.position, rotateVector(transform.TransformDirection(Vector2.up),45) * viewdist, Color.green);
         Debug.DrawRay(transform.position, rotateVector(transform.TransformDirection(Vector2.up), -22.5f) * viewdist, Color.green);
         Debug.DrawRay(transform.position, rotateVector(transform.TransformDirection(Vector2.up), 22.5f) * viewdist, Color.green);
         Debug.DrawRay(transform.position, rotateVector(transform.TransformDirection(Vector2.up), -11.25f) * viewdist, Color.green);
         Debug.DrawRay(transform.position, rotateVector(transform.TransformDirection(Vector2.up), 11.25f) * viewdist, Color.green);
+        Debug.DrawRay(transform.position, rotateVector(transform.TransformDirection(Vector2.up), 67.5f) *viewdist, Color.green);
+        Debug.DrawRay(transform.position, rotateVector(transform.TransformDirection(Vector2.up), -67.5f) * viewdist, Color.green);
         List<RaycastHit2D> hitting = new List<RaycastHit2D>();
         if (hit)
         {
@@ -75,6 +79,14 @@ public class RayCastTwoPointO : MonoBehaviour
         if (hit5)
         {
             hitting.Add(hit5);
+        }
+        if (hit7)
+        {
+            hitting.Add(hit7);
+        }
+        if (hit8)
+        {
+            hitting.Add(hit8);
         }
         if (player != null)
         {
@@ -122,7 +134,7 @@ public class RayCastTwoPointO : MonoBehaviour
             }
             else
             {
-                viewdist = 7f;
+                viewdist = 8f;
                 gameObject.GetComponent<FollowPath>().enabled = true;
             }
         }
@@ -165,7 +177,12 @@ public class RayCastTwoPointO : MonoBehaviour
         GameObject bullet = Instantiate(bulletprefab, transform.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.GetComponent<Bullet>().Owner = this.gameObject;
-        rb.AddForce(rotateVector(transform.up,3) * force, ForceMode2D.Impulse);
+        Vector2 shootdir = transform.up;
+        if (player.GetComponent<PlayerMovement>().movementdif != new Vector2())
+        {
+            shootdir =  new Vector2(transform.up.x, transform.up.y) + player.GetComponent<PlayerMovement>().movementdif.normalized;
+        }
+        rb.AddForce(shootdir * force, ForceMode2D.Impulse);
         Debug.Log("Shooting");
     }
 }

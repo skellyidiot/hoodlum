@@ -41,7 +41,7 @@ public class HitDaTrash : MonoBehaviour
             }
 
            
-            Debug.Log(adfa.NPCCOUNT);
+            //Debug.Log(adfa.NPCCOUNT);
             //collision.gameObject.GetComponent<PatrolScript2D>().enabled = false;
 
             //PatrolScript2D col2D = collision.gameObject.GetComponent<PatrolScript2D>();

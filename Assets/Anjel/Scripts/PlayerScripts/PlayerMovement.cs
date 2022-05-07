@@ -15,7 +15,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject HPBar;
     public GameObject StaminaWheel;
 
-    public static int Hp = 100;
+    public float movmentdeg = 0;
+    public Vector2 movementdif;
+
+    public static float Hp = 100;
 
     public bool resting = false;
 
@@ -35,17 +38,20 @@ public class PlayerMovement : MonoBehaviour
         sr = gameObject.GetComponent<SpriteRenderer>();
         ani = gameObject.GetComponent<Animator>();
         HPBar.GetComponent<Slider>().value = Hp / 100;
+        
     }
 
     // Update is called once per frame
     void Die()
     {
         print("Dead");
+        Destroy(gameObject);
     }
     public void Hit(int damage)
     {
         Hp -= damage;
         HPBar.GetComponent<Slider>().value = Hp / 100;
+        print(Hp/100);
         if (Hp <= 0)
         {
             Die();
@@ -56,10 +62,12 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "enemyBullet")
         {
             Hit(20);
+            Destroy(collision.gameObject);
         }
     }
     void Update()
     {
+       
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -149,7 +157,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector3 m1 = transform.position;
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        movementdif = transform.position - m1;
+        movmentdeg = Mathf.Atan2(movementdif.y, movementdif.x) * Mathf.Rad2Deg - 90f;
 
         Vector2 lookDir = mousePos.normalized;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;

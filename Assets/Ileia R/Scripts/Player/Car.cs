@@ -234,6 +234,6 @@ public class Car : MonoBehaviour
     void RadioGetOUt()
     {
         
-        Debug.Log("Out of car!!");
+        //Debug.Log("Out of car!!");
     }
 }

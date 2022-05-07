@@ -133,7 +133,7 @@ public class PatrolScript2D : MonoBehaviour
 
         //Debug.Log(pathDirection + " " + angle);
 
-        Debug.Log("------");
+        //Debug.Log("------");
 
         transform.rotation = Quaternion.Euler(0, 0, angle - 90);
 

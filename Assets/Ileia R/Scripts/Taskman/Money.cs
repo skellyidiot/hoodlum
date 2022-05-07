@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Money : MonoBehaviour
 {
     public static int money;
+    public static Text txt;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,5 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
