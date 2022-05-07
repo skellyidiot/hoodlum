@@ -44,11 +44,18 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Hit(int damage)
     {
-        Hp -= 20;
+        Hp -= damage;
         HPBar.GetComponent<Slider>().value = Hp / 100;
         if (Hp <= 0)
         {
             Die();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "enemyBullet")
+        {
+            Hit(20);
         }
     }
     void Update()

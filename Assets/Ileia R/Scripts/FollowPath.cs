@@ -7,12 +7,19 @@ public class FollowPath : MonoBehaviour
     // Array of waypoints to walk from one to the next one
     [SerializeField]
     private Transform[] waypoints;
+    public int[] waittime;
 
     // Walk speed that can be set in Inspector
     [SerializeField]
     private float moveSpeed = 2f;
     public bool goesback;
     public bool loops;
+
+    bool waiting;
+
+    public float timer = 0;
+
+    bool waited = false;
 
     bool backing;
     // Index of current waypoint from which Enemy walks
@@ -30,7 +37,16 @@ public class FollowPath : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
+        if (waiting == true)
+        {
+            timer += Time.deltaTime;
+            if (timer >= waittime[waypointIndex])
+            {
+                waited = true;
+                waiting = false;
+                timer = 0;
+            }
+        }
         // Move Enemy
         if (AllTasks.isInBuilding)
         {
@@ -48,9 +64,16 @@ public class FollowPath : MonoBehaviour
         {
 
             // Move Enemy from current waypoint to the next one
-            // using MoveTowards method
+            Vector3 oldpos = transform.position;
             transform.position = Vector2.MoveTowards(transform.position,
                waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
+            Vector2 posdif = oldpos - transform.position;
+            posdif = posdif.normalized;
+            if (posdif != new Vector2())
+            {
+                float rot_z = Mathf.Atan2(posdif.y, posdif.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
+            }
 
             // If Enemy reaches position of waypoint he walked towards
             // then waypointIndex is increased by 1
@@ -58,13 +81,20 @@ public class FollowPath : MonoBehaviour
             
             if (transform.position == waypoints[waypointIndex].transform.position)
             {
-                if (backing == false)
+                if (waittime[waypointIndex] > 0 && waited == false)
                 {
-                    waypointIndex += 1;
+                    waiting = true;
                 }
-                else
-                {
-                    waypointIndex -= 1;
+                if (waiting == false) {
+                    waited = false;
+                    if (backing == false)
+                    {
+                        waypointIndex += 1;
+                    }
+                    else
+                    {
+                        waypointIndex -= 1;
+                    } 
                 }
             }
         }

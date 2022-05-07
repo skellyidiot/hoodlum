@@ -58,14 +58,14 @@ public class AllTasks : MonoBehaviour
     {
         //Task 1
         
-        if (isInBuilding)
-        {
-            rain.SetActive(false);
-        }
-        else
-        {
-            //rain.SetActive(true);
-        }
+        //if (isInBuilding)
+        //{
+        //    rain.SetActive(false);
+        //}
+        //else
+        //{
+        //    //rain.SetActive(true);
+        //}
         if (hasInfo == true)
         {
             DropOfftext.SetActive(true);

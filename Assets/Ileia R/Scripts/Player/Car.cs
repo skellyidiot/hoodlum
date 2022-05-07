@@ -233,7 +233,7 @@ public class Car : MonoBehaviour
     }
     void RadioGetOUt()
     {
-        audioSource.Pause();
+        
         Debug.Log("Out of car!!");
     }
 }

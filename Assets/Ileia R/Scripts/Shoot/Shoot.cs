@@ -16,7 +16,7 @@ public class Shoot : MonoBehaviour
     public AudioClip GunSHot;
     private void Start()
     {
-        muzzle.SetActive(false);
+        //muzzle.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -52,6 +52,7 @@ public class Shoot : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletprefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        bullet.GetComponent<Bullet>().Owner = this.gameObject;
         rb.AddForce(firePoint.up * force, ForceMode2D.Impulse);
     }
     
