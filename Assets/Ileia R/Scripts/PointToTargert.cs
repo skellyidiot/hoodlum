@@ -15,6 +15,12 @@ public class PointToTargert : MonoBehaviour
     //task 3 objects
     public GameObject Location;
 
+    //TASK 4 OBJECTS
+    public GameObject stairsUp;
+    public GameObject MobBoss;
+    public GameObject stairsDown;
+
+
     // Update is called once per frame
 
     private void Start()
@@ -70,6 +76,16 @@ public class PointToTargert : MonoBehaviour
         {
             sr.enabled = true;
             Vector3 vectorToTarget = transform.position - Location.transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+        }
+
+        //task 4
+        if(TaskmanTXTbox.doingTask4 == true)
+        {
+            sr.enabled = true;
+            Vector3 vectorToTarget = transform.position - stairsUp.transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);

@@ -30,6 +30,14 @@ public class AllTasks : MonoBehaviour
     public static float timeLeft = 60;
     public GameObject spawnerIfFail;
 
+    //task 4
+    public GameObject stairsUP;
+    public GameObject spawnUP;
+    public bool HasGoneUp;
+    public static bool HasKilledLeader;
+    public GameObject stairsDOWN;
+    public GameObject spawnDOWN;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +106,12 @@ public class AllTasks : MonoBehaviour
             //TaskmanTXTbox.doingTask3 = false;
             TaskmanTXTbox.doneTask3 = false;
         }
+
+        //task4
+        if(RayCastTwoPointO.LeaderDead == true)
+        {
+            TaskmanTXTbox.doneTask4 = true;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -142,6 +156,7 @@ public class AllTasks : MonoBehaviour
             LeaderInCar = true;
             dropOff.SetActive(true);
         }
+
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -162,5 +177,12 @@ public class AllTasks : MonoBehaviour
             timeLeft = 60;
         }
 
+        //task 4
+        if (collision.gameObject.tag == "stairsUP" && TaskmanTXTbox.doingTask4 == true)
+        {
+            gameObject.transform.position = spawnUP.transform.position;
+            System.Threading.Thread.Sleep(1000);
+        }
+        // LATER-- Add for when you kill mob boss
     }
 }

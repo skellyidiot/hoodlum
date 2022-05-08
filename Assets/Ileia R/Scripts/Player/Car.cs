@@ -145,6 +145,7 @@ public class Car : MonoBehaviour
                 //Debug.Log("================================CAR ZR:   " + carZR);
 
                 isDriving = false;
+                RadioGetInCar();
             }
         }
         if(isDriving == false)
@@ -233,7 +234,7 @@ public class Car : MonoBehaviour
     }
     void RadioGetOUt()
     {
-        
+        audioSource.Pause();
         //Debug.Log("Out of car!!");
     }
 }

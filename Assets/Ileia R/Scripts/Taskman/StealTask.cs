@@ -39,11 +39,14 @@ public class StealTask : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "DoorIn" && hasAlreadyGoneIn == false && isInBuilding == false && TaskmanTXTbox.doingTask1 == true && Car.isDriving == false)
+        if (collision.gameObject.tag == "DoorIn" && hasAlreadyGoneIn == false && isInBuilding == false && Car.isDriving == false)
         {
-            isInBuilding = true;
-
-            gameObject.transform.position = SpawnINBUILDING.transform.position;
+            if(TaskmanTXTbox.doingTask1 == true || TaskmanTXTbox.doingTask4 == true)
+            {
+                System.Threading.Thread.Sleep(1000);
+                isInBuilding = true;
+                gameObject.transform.position = SpawnINBUILDING.transform.position;
+            }
         }
 
         if(collision.gameObject.tag == "DoorOut" && isInBuilding == true && AllTasks.hasInfo == true)

@@ -97,11 +97,11 @@ public class PlayerMovement : MonoBehaviour
        }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        if (gothit)
-        {
-            //StartCoroutine(WaitBeforeAdd());
-            AddHp();
-        }
+        //if (gothit)
+        //{
+        //    //StartCoroutine(WaitBeforeAdd());
+        //    AddHp();
+        //}
 
         //if (Input.GetKeyDown("h"))
         //{
