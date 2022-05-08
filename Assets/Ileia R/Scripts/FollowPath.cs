@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class FollowPath : MonoBehaviour
 {
     // Array of waypoints to walk from one to the next one

@@ -157,10 +157,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 m1 = transform.position;
+        Vector2 m1 = rb.position;
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        movementdif = transform.position - m1;
-        movmentdeg = Mathf.Atan2(movementdif.y, movementdif.x) * Mathf.Rad2Deg - 90f;
+        movementdif = rb.position - movement * moveSpeed * Time.fixedDeltaTime - rb.position ;
+        
 
         Vector2 lookDir = mousePos.normalized;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
