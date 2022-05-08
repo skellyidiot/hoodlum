@@ -65,10 +65,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void AddHp()
     {
-        if(Hp < 100)
-        {
-            Hp += 1;
-        }
+        //if(Hp < 100)
+        //{
+        //    StartCoroutine(WaitBeforeAdd());
+        //    Hp += 1;
+        //    HPBar.GetComponent<Slider>().value = Hp / 100;
+        //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -85,25 +87,27 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(Hp);
        if(Hp > 100)
        {
             Hp = 100;
+            gothit = false;
        }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        //if (gothit)
-        //{
-        //    StartCoroutine(WaitBeforeAdd());
-        //    AddHp();
-        //}
+        if (gothit)
+        {
+            //StartCoroutine(WaitBeforeAdd());
+            AddHp();
+        }
 
         //if (Input.GetKeyDown("h"))
         //{
-            //Debug.Log(TimeSinceHit);
+        //Debug.Log(TimeSinceHit);
         //}
         //sprinting dont work is lame
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && stamina >= 0 && resting == false)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && stamina >= 0 && resting == false)
         {
             IsRunning = true;
            moveSpeed = RUNSPEED;
@@ -155,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         
         
         
-         //StartCoroutine(RegainHealthOverTime());
+         StartCoroutine(WaitBeforeAdd());
         
 
         if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("Menu");
@@ -218,6 +222,12 @@ public class PlayerMovement : MonoBehaviour
     //}
     IEnumerator WaitBeforeAdd()
     {
-        yield return new WaitForSeconds(2);
+        if (Hp < 100)
+        {
+            Hp += 1;
+            yield return new WaitForSeconds(2);
+            HPBar.GetComponent<Slider>().value = Hp / 100;
+            yield return new WaitForSeconds(2);
+        }
     }
 }
