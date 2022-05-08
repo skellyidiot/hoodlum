@@ -28,6 +28,7 @@ TagManager:
   - Hit
   - cast
   - enemyBullet
+  - BuildingSpawn
   layers:
   - Default
   - TransparentFX

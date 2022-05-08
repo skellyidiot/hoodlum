@@ -20,7 +20,7 @@ public class adfa : MonoBehaviour
 
         for (int i = 0; i < NPCCOUNT; i++)
         {
-            Debug.Log(i + "+>>> " + patrolPts[i].transform.position);
+            //Debug.Log(i + "+>>> " + patrolPts[i].transform.position);
             Instantiate(NPC, patrolPts[i].transform.position, Quaternion.identity);
         }
     }
