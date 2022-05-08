@@ -123,7 +123,7 @@ public class RayCastTwoPointO : MonoBehaviour
                 {
                     seeking = false;
                     agrotimer = 0;
-                    es.enabled = false;
+                    es.active = false;
                 }
             }
            if (phit == false)
@@ -140,7 +140,7 @@ public class RayCastTwoPointO : MonoBehaviour
                         player = null;
                         agro = false;
                         agrotimer = 0;
-                        es.enabled = true;
+                        es.active = true;
                         es.Ready();
 
                     }
@@ -149,7 +149,7 @@ public class RayCastTwoPointO : MonoBehaviour
             if (agro)
             {
                 viewdist = 14f;
-                gameObject.GetComponent<FollowPath>().enabled = false;
+                gameObject.GetComponent<FollowPath>().active = false;
                 
                 ShootTimer += Time.deltaTime;
                 if (ShootTimer >= 0.5)
@@ -163,7 +163,7 @@ public class RayCastTwoPointO : MonoBehaviour
             else if (!seeking)
             {
                 viewdist = 8f;
-                gameObject.GetComponent<FollowPath>().enabled = true;
+                gameObject.GetComponent<FollowPath>().active = true;
                 
             }
         }

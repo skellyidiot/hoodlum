@@ -16,6 +16,8 @@ public class EnemySeek : MonoBehaviour
 
     public float timer = 30;
 
+    public bool active = false;
+
     Seeker seeker;
     Rigidbody2D rb;
     // Start is called before the first frame update
@@ -23,55 +25,57 @@ public class EnemySeek : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+        
 
     }
 
     // Update is called once per frame
     public void Ready()
     {
+        seeker.StartPath(rb.position, target.position, OnPathComplete);
 
-        
     }
     void FixedUpdate()
     {
-        
-
-        Vector3 oldpos = transform.position;
-        if (path == null)
+        if (active)
         {
-            return;
-        }
-        if (currwaypoint >= path.vectorPath.Count)
-        {
-            atend = true;
-            return;
-        }
-        else
-        {
-            atend = false;
-        }
 
-        Vector2 dir = ((Vector2)path.vectorPath[currwaypoint] - rb.position).normalized;
-        Vector2 force = dir * speed * Time.deltaTime;
+            Vector3 oldpos = transform.position;
+            if (path == null)
+            {
+                return;
+            }
+            if (currwaypoint >= path.vectorPath.Count)
+            {
+                atend = true;
+                return;
+            }
+            else
+            {
+                atend = false;
+            }
+
+            Vector2 dir = ((Vector2)path.vectorPath[currwaypoint] - rb.position).normalized;
+            Vector2 force = dir * speed * Time.deltaTime;
 
 
-        float dist = Vector2.Distance(rb.position, path.vectorPath[currwaypoint]);
+            float dist = Vector2.Distance(rb.position, path.vectorPath[currwaypoint]);
 
 
-        rb.position += force;
+            rb.position += force;
 
-        if (dist < nextwaydist)
-        {
-            currwaypoint++;
-        }
+            if (dist < nextwaydist)
+            {
+                currwaypoint++;
+            }
 
-        Vector2 posdif = oldpos - transform.position;
-        posdif = posdif.normalized;
-        if (posdif != new Vector2())
-        {
-            float rot_z = Mathf.Atan2(posdif.y, posdif.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
+            Vector2 posdif = oldpos - transform.position;
+            posdif = posdif.normalized;
+            if (posdif != new Vector2())
+            {
+                float rot_z = Mathf.Atan2(posdif.y, posdif.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
+            }
         }
     }
     void OnPathComplete(Path P)

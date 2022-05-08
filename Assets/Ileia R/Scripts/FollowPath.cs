@@ -22,6 +22,8 @@ public class FollowPath : MonoBehaviour
 
     bool waited = false;
 
+    public bool active = true;
+
     bool backing;
     // Index of current waypoint from which Enemy walks
     // to the next one
@@ -38,20 +40,23 @@ public class FollowPath : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (waiting == true)
+        if (active)
         {
-            timer += Time.deltaTime;
-            if (timer >= waittime[waypointIndex])
+            if (waiting == true)
             {
-                waited = true;
-                waiting = false;
-                timer = 0;
+                timer += Time.deltaTime;
+                if (timer >= waittime[waypointIndex])
+                {
+                    waited = true;
+                    waiting = false;
+                    timer = 0;
+                }
             }
-        }
-        // Move Enemy
-        if (AllTasks.isInBuilding)
-        {
-            Move();
+            // Move Enemy
+            if (AllTasks.isInBuilding)
+            {
+                Move();
+            }
         }
     }
 
