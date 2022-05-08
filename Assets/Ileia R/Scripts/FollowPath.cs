@@ -8,10 +8,11 @@ public class FollowPath : MonoBehaviour
     // Array of waypoints to walk from one to the next one
     [SerializeField]
     private Transform[] waypoints;
-    public int[] waittime;
+   
 
     // Walk speed that can be set in Inspector
     [SerializeField]
+    public int[] waittime;
     private float moveSpeed = 2f;
     public bool goesback;
     public bool loops;

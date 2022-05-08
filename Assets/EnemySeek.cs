@@ -6,8 +6,8 @@ using Pathfinding;
 public class EnemySeek : MonoBehaviour
 {
     public Transform target;
-    float speed = 20f;
-    float nextwaydist = 3f;
+    float speed = 10f;
+    float nextwaydist = 1f;
 
     Path path;
     public int currwaypoint;
@@ -32,7 +32,10 @@ public class EnemySeek : MonoBehaviour
     // Update is called once per frame
     public void Ready()
     {
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+        //いたい
+        //僕を殺して
+        print(target.position);
+        seeker.StartPath(transform.position, target.position, OnPathComplete);
 
     }
     void FixedUpdate()
@@ -82,8 +85,13 @@ public class EnemySeek : MonoBehaviour
     {
         if (!P.error)
         {
+            
             path = P;
             currwaypoint = 0;
+        }
+        else
+        {
+            print(P.error);
         }
     }
 }

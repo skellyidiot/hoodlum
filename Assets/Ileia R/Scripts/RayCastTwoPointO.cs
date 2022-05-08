@@ -16,10 +16,10 @@ public class RayCastTwoPointO : MonoBehaviour
     public float ShootTimer;
     public float viewdist = 8f;
 
-    bool agro;
+    public bool agro;
     float agrotimer = 0;
     public GameObject player = null;
-    bool seeking;
+    public bool seeking;
 
     int HP = 100;
     Rigidbody2D rb;
@@ -93,7 +93,7 @@ public class RayCastTwoPointO : MonoBehaviour
         {
             hitting.Add(hit8);
         }
-        if (player != null)
+        if (player != null && agro)
         {
             Vector2 posdif = (transform.position - player.transform.position);
             posdif  += player.GetComponent<PlayerMovement>().movementdif * 15;
@@ -124,6 +124,7 @@ public class RayCastTwoPointO : MonoBehaviour
                     seeking = false;
                     agrotimer = 0;
                     es.active = false;
+                    player = null;
                 }
             }
            if (phit == false)
@@ -137,7 +138,7 @@ public class RayCastTwoPointO : MonoBehaviour
                         es.target = player.transform;
                         seeking = true;
                         
-                        player = null;
+                        
                         agro = false;
                         agrotimer = 0;
                         es.active = true;
@@ -160,7 +161,7 @@ public class RayCastTwoPointO : MonoBehaviour
                 Strafe();
 
             }
-            else if (!seeking)
+            if (seeking == false && agro == false)
             {
                 viewdist = 8f;
                 gameObject.GetComponent<FollowPath>().active = true;

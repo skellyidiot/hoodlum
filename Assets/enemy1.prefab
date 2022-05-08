@@ -115,6 +115,7 @@ MonoBehaviour:
   goesback: 1
   loops: 0
   timer: 0
+  active: 1
   waypointIndex: 0
 --- !u!58 &5485730749054695528
 CircleCollider2D:
@@ -189,7 +190,10 @@ MonoBehaviour:
   force: 20
   ShootTimer: 0
   viewdist: 7
+  agro: 0
   player: {fileID: 0}
+  seeking: 0
+  es: {fileID: 0}
 --- !u!114 &4504258716602069614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,8 +229,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5485730749054695535}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7df6057fc9d9a4682951c1d2672d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  currwaypoint: 0
+  timer: 30
+  active: 0
