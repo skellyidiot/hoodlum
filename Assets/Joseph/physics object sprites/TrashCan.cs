@@ -35,7 +35,7 @@ public class TrashCan : PhysicsHitObject
         if (gothit != true)
         {
             base.Hit(force,pos , dir);
-            
+            GetComponent<AudioSource>().Play();
             anim.SetBool("hit", true);
             gothit = true;
             StartCoroutine(Wait());

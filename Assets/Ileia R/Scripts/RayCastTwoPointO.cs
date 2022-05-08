@@ -123,7 +123,7 @@ public class RayCastTwoPointO : MonoBehaviour
             {
 
                 agrotimer += Time.deltaTime;
-                if (agrotimer > 2.5)
+                if (agrotimer > 5)
                 {
                     seeking = false;
                     agrotimer = 0;
@@ -217,7 +217,7 @@ public class RayCastTwoPointO : MonoBehaviour
     }
     void Strafe()
     {
-        rb.AddForce(-player.GetComponent<PlayerMovement>().movementdif * 9000   * Time.deltaTime);
+        rb.AddForce(-player.GetComponent<PlayerMovement>().movementdif * 10000   * Time.deltaTime);
     }
     void Shoot()
     {
