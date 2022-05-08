@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         Destroy(gameObject);
         isDead = true;
     }
-    public void Hit(int damage)
+    public void Hit(float damage)
     {
         Hp -= damage;
         HPBar.GetComponent<Slider>().value = Hp / 100;
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemyBullet")
         {
-            Hit(20);
+            Hit(collision.gameObject.GetComponent<Bullet>().Damage);
             Destroy(collision.gameObject);
             gothit = true;
             //Hp += Time.deltaTime;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public GameObject Owner;
+    public float Damage = 20;
     void OnBecameInvisible()
     {
         Destroy(gameObject);

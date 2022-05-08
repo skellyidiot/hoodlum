@@ -21,7 +21,9 @@ public class RayCastTwoPointO : MonoBehaviour
     public GameObject player = null;
     public bool seeking;
 
-    public int HP = 100;
+    public float Damage = 20;
+
+    public float HP = 100;
 
     public static bool LeaderDead;
     Rigidbody2D rb;
@@ -221,7 +223,9 @@ public class RayCastTwoPointO : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletprefab, transform.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
         bullet.GetComponent<Bullet>().Owner = this.gameObject;
+        bullet.GetComponent<Bullet>().Damage = Damage;
 
         rb.AddForce(transform.up * force, ForceMode2D.Impulse);
         Debug.Log("Shooting");
