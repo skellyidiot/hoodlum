@@ -10,7 +10,7 @@ public class GoToHouse : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        door = GameObject.FindGameObjectWithTag("DoorIn");
+        door = GameObject.FindGameObjectWithTag("BuildingSpawn");
     }
     // Update is called once per frame
     void Update()
@@ -18,6 +18,7 @@ public class GoToHouse : MonoBehaviour
         if (Input.GetKey("h"))
         {
             TaskmanTXTbox.doingTask1 = true;
+            AllTasks.isInBuilding = true;
             player.transform.position = door.transform.position;
         }
     }
