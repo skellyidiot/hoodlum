@@ -4,9 +4,9 @@ using UnityEngine;
 using Pathfinding;
 
 public class EnemySeek : MonoBehaviour
-{
+{ 
     public Transform target;
-    float speed = 10f;
+    float speed = 5f;
     float nextwaydist = 1f;
 
     Path path;
