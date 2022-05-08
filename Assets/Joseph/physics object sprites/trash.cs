@@ -16,11 +16,11 @@ public class trash : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         float rng = Random.RandomRange(-22.5f, 22.5f);
         GetComponent<Rigidbody2D>().angularVelocity = rng * 5;
-        print(transform.rotation.eulerAngles.z);
+        //print(transform.rotation.eulerAngles.z);
         float brot = -transform.rotation.eulerAngles.z + rng;
         transform.eulerAngles = new Vector3(0, 0, rng + brot);
         float rngvel = Random.RandomRange(25f, 50f);
-        print(transform.forward * rngvel);
+        //print(transform.forward * rngvel);
         GetComponent<Rigidbody2D>().AddForce(transform.up * rngvel);
         GetComponent<SpriteRenderer>().sprite = GetTrashSprite(GetTrash());
         f = true;

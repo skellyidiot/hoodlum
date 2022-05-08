@@ -47,7 +47,7 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource = transform.GetChild(3).gameObject.GetComponent<AudioSource>();
 
         isDriving = false;
         RootObjectOfHFactsTextBox.SetActive(false);

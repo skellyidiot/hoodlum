@@ -18,6 +18,8 @@ public class EnemySeek : MonoBehaviour
 
     public bool active = false;
 
+    public bool returntopoint;
+
     Seeker seeker;
     Rigidbody2D rb;
     // Start is called before the first frame update
