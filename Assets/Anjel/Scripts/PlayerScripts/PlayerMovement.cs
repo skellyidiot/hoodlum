@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static bool isDead;
 
     bool gothit = false;
 
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
         print("Dead");
         Destroy(gameObject);
+        isDead = true;
     }
     public void Hit(int damage)
     {
