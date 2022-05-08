@@ -43,7 +43,12 @@ public class TaskmanTXTbox : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown("l"))
+        {
+            doneTask1 = true;
+            doneTask2 = true;
+            doneTask3 = true;
+        }
         if (isTalking == true)
         {
             if (Input.GetKeyDown("1") && doneTask1 != true)
@@ -117,7 +122,7 @@ public class TaskmanTXTbox : MonoBehaviour
         if (doneTask1 == true && doneTask2 == true && doneTask3 == true && doneTask4 == false)
         {
             //do stuff for task 4 
-            txt.text = "Jeez, you've come a long way! Now for the main challenge: \n 4.) Go back to the mob boss's house and kill him";
+            txt.text = "Jeez, you've come a long way! Now for the main challenge: \n 4.) Go back to the mob boss's house and kill him in his office upstairs";
         }
         if (doneTask1 == true && doneTask2 == true && doneTask3 == true &&  doneTask4 == true)
         {

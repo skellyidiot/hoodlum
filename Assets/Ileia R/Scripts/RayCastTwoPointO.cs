@@ -21,7 +21,9 @@ public class RayCastTwoPointO : MonoBehaviour
     public GameObject player = null;
     bool seeking;
 
-    int HP = 100;
+    public int HP = 100;
+
+    public static bool LeaderDead;
     Rigidbody2D rb;
 
     public EnemySeek es;
@@ -190,11 +192,16 @@ public class RayCastTwoPointO : MonoBehaviour
             Destroy(collision.gameObject);
             agro = true;
             HP -= 20;
-            if (HP <= 0)
+            if (HP <= 0 && this.gameObject.tag != "Leader")
             {
                 Destroy(gameObject);
             }
-            
+            if (HP <= 0 && this.gameObject.tag == "Leader")
+            {
+                Destroy(gameObject);
+                LeaderDead = true;
+            }
+
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
