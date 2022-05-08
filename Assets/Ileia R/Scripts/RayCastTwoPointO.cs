@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class RayCastTwoPointO : MonoBehaviour
 {
@@ -18,15 +19,19 @@ public class RayCastTwoPointO : MonoBehaviour
     bool agro;
     float agrotimer = 0;
     public GameObject player = null;
+    bool seeking;
 
     int HP = 100;
     Rigidbody2D rb;
+
+    public EnemySeek es;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        es = GetComponent<EnemySeek>();
     }
 
     // Update is called once per frame
@@ -90,7 +95,8 @@ public class RayCastTwoPointO : MonoBehaviour
         }
         if (player != null)
         {
-            Vector2 posdif = transform.position - player.transform.position;
+            Vector2 posdif = (transform.position - player.transform.position);
+            posdif  += player.GetComponent<PlayerMovement>().movementdif * 15;
             float rot_z = Mathf.Atan2(posdif.y, posdif.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
         }
@@ -104,18 +110,39 @@ public class RayCastTwoPointO : MonoBehaviour
                     agro = true;
                     phit = true;
                     player = h.collider.gameObject;
+                    
+                    agrotimer = 0;
+
+                }
+            }
+           if (seeking)
+            {
+
+                agrotimer += Time.deltaTime;
+                if (agrotimer > 2.5)
+                {
+                    seeking = false;
+                    agrotimer = 0;
+                    es.enabled = false;
                 }
             }
            if (phit == false)
             {
                 if (agro)
                 {
+                    
                     agrotimer += Time.deltaTime;
-                    if (agrotimer >= 2.5)
+                    if (agrotimer >= 1)
                     {
+                        es.target = player.transform;
+                        seeking = true;
+                        
                         player = null;
                         agro = false;
                         agrotimer = 0;
+                        es.enabled = true;
+                        es.Ready();
+
                     }
                 }
             }
@@ -123,6 +150,7 @@ public class RayCastTwoPointO : MonoBehaviour
             {
                 viewdist = 14f;
                 gameObject.GetComponent<FollowPath>().enabled = false;
+                
                 ShootTimer += Time.deltaTime;
                 if (ShootTimer >= 0.5)
                 {
@@ -132,10 +160,11 @@ public class RayCastTwoPointO : MonoBehaviour
                 Strafe();
 
             }
-            else
+            else if (!seeking)
             {
                 viewdist = 8f;
                 gameObject.GetComponent<FollowPath>().enabled = true;
+                
             }
         }
 
@@ -168,21 +197,25 @@ public class RayCastTwoPointO : MonoBehaviour
             
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            player = collision.gameObject;
+            agro = true;
+        }
+    }
     void Strafe()
     {
-        rb.AddForce(transform.right * 1000   * Time.deltaTime);
+        rb.AddForce(-player.GetComponent<PlayerMovement>().movementdif * 9000   * Time.deltaTime);
     }
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletprefab, transform.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.GetComponent<Bullet>().Owner = this.gameObject;
-        Vector2 shootdir = transform.up;
-        if (player.GetComponent<PlayerMovement>().movementdif != new Vector2())
-        {
-            shootdir =  new Vector2(transform.up.x, transform.up.y) + player.GetComponent<PlayerMovement>().movementdif.normalized;
-        }
-        rb.AddForce(shootdir * force, ForceMode2D.Impulse);
+
+        rb.AddForce(transform.up * force, ForceMode2D.Impulse);
         Debug.Log("Shooting");
     }
 }
