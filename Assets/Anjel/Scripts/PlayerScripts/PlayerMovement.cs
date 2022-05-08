@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(Hp);
+        //Debug.Log(Hp);
        if(Hp > 100)
        {
             Hp = 100;

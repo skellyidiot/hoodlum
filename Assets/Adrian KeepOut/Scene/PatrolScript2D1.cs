@@ -45,7 +45,7 @@ public class PatrolScript2D : MonoBehaviour
 
         patrolPath = Random.Range(0, patrolPts.Count);
 
-        Debug.Log(patrolPath);
+        //Debug.Log(patrolPath);
 
         patrolPoints = patrolPts.ToArray();
 
