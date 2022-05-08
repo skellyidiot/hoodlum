@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
 
+    bool gothit = false;
+
     public float moveSpeed = 5f;
     public float stamina = 10;
     public bool IsRunning = false;
@@ -33,12 +35,16 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     Vector2 mousePos;
 
+    public static float TimeSinceHit;
+    public bool isRegenHealth;
+    
     private void Start()
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
         ani = gameObject.GetComponent<Animator>();
         HPBar.GetComponent<Slider>().value = Hp / 100;
-        
+
+        TimeSinceHit = 0;
     }
 
     // Update is called once per frame
@@ -51,10 +57,17 @@ public class PlayerMovement : MonoBehaviour
     {
         Hp -= damage;
         HPBar.GetComponent<Slider>().value = Hp / 100;
-        print(Hp/100);
+        //print(Hp/100);
         if (Hp <= 0)
         {
             Die();
+        }
+    }
+    void AddHp()
+    {
+        if(Hp < 100)
+        {
+            Hp += 1;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,16 +76,31 @@ public class PlayerMovement : MonoBehaviour
         {
             Hit(20);
             Destroy(collision.gameObject);
+            gothit = true;
+            //Hp += Time.deltaTime;
+
+            //TimeSinceHit = 0;
+            //TimeSinceHit += Time.deltaTime;
         }
     }
     void Update()
     {
-       
+       if(Hp > 100)
+       {
+            Hp = 100;
+       }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        //if (gothit)
+        //{
+        //    StartCoroutine(WaitBeforeAdd());
+        //    AddHp();
+        //}
 
-
-
+        //if (Input.GetKeyDown("h"))
+        //{
+            //Debug.Log(TimeSinceHit);
+        //}
         //sprinting dont work is lame
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && stamina >= 0 && resting == false)
@@ -124,6 +152,11 @@ public class PlayerMovement : MonoBehaviour
         }
         StaminaWheel.GetComponent<Image>().fillAmount = stamina / 10;
 
+        
+        
+        
+         //StartCoroutine(RegainHealthOverTime());
+        
 
         if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("Menu");
 
@@ -165,5 +198,26 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDir = mousePos.normalized;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
+    }
+    //private IEnumerator RegainHealthOverTime()
+    //{
+    //    while(true)
+    //    {
+    //        if(Hp < 100)
+    //        {
+    //            Debug.Log("IS REGAINING HEALTH AND IS AT:" + Hp);
+    //            yield return new WaitForSeconds(1);
+    //            Hp += 1;
+    //        }
+    //        else
+    //        {
+    //            yield return null;
+    //        }
+            
+    //    }
+    //}
+    IEnumerator WaitBeforeAdd()
+    {
+        yield return new WaitForSeconds(2);
     }
 }
