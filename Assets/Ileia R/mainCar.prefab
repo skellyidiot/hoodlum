@@ -360,7 +360,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005003944, y: -0.046176188}
+  m_Offset: {x: 0, y: -0.046176195}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -371,7 +371,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.55141187}
+  m_Size: {x: 0.36, y: 0.55141187}
   m_EdgeRadius: 0
 --- !u!70 &9171394737543851863
 CapsuleCollider2D:
@@ -401,7 +401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8951c41f6c8734ba24127f7202de19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Car: {fileID: 0}
+  gos: {fileID: 0}
   rb2d: {fileID: 0}
+  timer: 0
 --- !u!1 &3427436042135231797
 GameObject:
   m_ObjectHideFlags: 0
