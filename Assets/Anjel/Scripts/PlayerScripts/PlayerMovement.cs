@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
     const float RUNSPEED = 10;
     const float WALKSPEED = 5;
+    
+    
 
     public Rigidbody2D rb;
     public Camera cam;
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isRegenHealth;
 
     public float HpTimer;
+
 
     private void Start()
     {
@@ -63,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Hit(float damage)
     {
+        
         HpTimer = 0;
         Hp -= damage;
         HPBar.GetComponent<Slider>().value = Hp / 100;
@@ -71,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Die();
         }
+        ScreenShake.Instance.ShakeCamera(damage, 0.3f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
