@@ -36,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     Vector2 mousePos;
 
+    public bool FootSteped;
+
     public static float TimeSinceHit;
     public bool isRegenHealth;
     
@@ -87,6 +89,12 @@ public class PlayerMovement : MonoBehaviour
             //TimeSinceHit += Time.deltaTime;
         }
     }
+
+    public void footstep()
+    {
+        transform.GetChild(4).gameObject.GetComponent<AudioSource>().Play();
+        FootSteped = false;
+    }
     void Update()
     {
         //Debug.Log(Hp);
@@ -97,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
        }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        if (movement != new Vector2())
         //if (gothit)
         //{
         //    //StartCoroutine(WaitBeforeAdd());

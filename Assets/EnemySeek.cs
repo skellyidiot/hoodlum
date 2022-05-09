@@ -14,11 +14,12 @@ public class EnemySeek : MonoBehaviour
 
     bool atend = false;
 
-    public float timer = 30;
+    public float timer = 0;
 
     public bool active = false;
 
     public bool returntopoint;
+    public bool returning;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -31,13 +32,18 @@ public class EnemySeek : MonoBehaviour
 
     }
 
+    public void SetPath()
+    {
+        seeker.StartPath(transform.position, target.position, OnPathComplete);
+    }
+
     // Update is called once per frame
     public void Ready()
     {
         //いたい
         //僕を殺して
         print(target.position);
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
+        SetPath();
 
     }
     void FixedUpdate()
@@ -53,6 +59,24 @@ public class EnemySeek : MonoBehaviour
             if (currwaypoint >= path.vectorPath.Count)
             {
                 atend = true;
+                if (returning)
+                {
+
+                    GetComponent<RayCastTwoPointO>().doneSeeking();
+                    returning = false;
+                }
+                else
+                {
+                    timer += 1;
+                    if (timer >= 60)
+                    {
+                        timer = 0;
+                        GetComponent<Animator>().SetBool("Gun", false);
+                        seeker.StartPath(transform.position, GetComponent<FollowPath>().waypoints[GetComponent<FollowPath>().waypointIndex].position, OnPathComplete);
+                        returning = true;
+                    }
+                }
+                
                 return;
             }
             else
@@ -74,13 +98,8 @@ public class EnemySeek : MonoBehaviour
                 currwaypoint++;
             }
 
-            Vector2 posdif = oldpos - transform.position;
-            posdif = posdif.normalized;
-            if (posdif != new Vector2())
-            {
-                float rot_z = Mathf.Atan2(posdif.y, posdif.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
-            }
+            float rot_z = Mathf.Atan2(-dir.x, dir.y) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
         }
     }
     void OnPathComplete(Path P)

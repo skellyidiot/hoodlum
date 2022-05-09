@@ -99,6 +99,7 @@ public class RayCastTwoPointO : MonoBehaviour
         }
         if (player != null && agro)
         {
+            
             Vector2 posdif = (transform.position - player.transform.position);
             posdif  += player.GetComponent<PlayerMovement>().movementdif * 15;
             float rot_z = Mathf.Atan2(posdif.y, posdif.x) * Mathf.Rad2Deg;
@@ -111,10 +112,11 @@ public class RayCastTwoPointO : MonoBehaviour
             {
                 if (h.collider.gameObject.tag == "Player")
                 {
+                    GetComponent<Animator>().SetBool("Gun", true);
                     agro = true;
                     phit = true;
                     player = h.collider.gameObject;
-                    
+                    es.active = false;
                     agrotimer = 0;
 
                 }
@@ -122,14 +124,6 @@ public class RayCastTwoPointO : MonoBehaviour
            if (seeking)
             {
 
-                agrotimer += Time.deltaTime;
-                if (agrotimer > 5)
-                {
-                    seeking = false;
-                    agrotimer = 0;
-                    es.active = false;
-                    player = null;
-                }
             }
            if (phit == false)
             {
@@ -139,8 +133,9 @@ public class RayCastTwoPointO : MonoBehaviour
                     agrotimer += Time.deltaTime;
                     if (agrotimer >= 1)
                     {
-                        es.target = player.transform;
+                        es.target = player.transform; 
                         seeking = true;
+                        es.returning = false;
                         
                         
                         agro = false;
@@ -153,6 +148,7 @@ public class RayCastTwoPointO : MonoBehaviour
             }
             if (agro)
             {
+                
                 viewdist = 14f;
                 gameObject.GetComponent<FollowPath>().active = false;
                 
@@ -207,6 +203,15 @@ public class RayCastTwoPointO : MonoBehaviour
 
         }
     }
+    public void doneSeeking()
+    {
+        GetComponent<Animator>().SetBool("Gun", false);
+        seeking = false;
+        agrotimer = 0;
+        es.active = false;
+        player = null;
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -217,10 +222,34 @@ public class RayCastTwoPointO : MonoBehaviour
     }
     void Strafe()
     {
-        rb.AddForce(-player.GetComponent<PlayerMovement>().movementdif * 10000   * Time.deltaTime);
+        float speed = Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y);
+        if ( speed < 1) { 
+        GetComponent<Animator>().SetBool("Walk", false);
+        }
+        else { GetComponent<Animator>().SetBool("Walk", true); }
+        float distop = Vector2.Distance(transform.position, player.transform.position);
+        Vector2 addvel = new Vector2();
+        Vector2 dirtop = (player.transform.position - transform.position).normalized;
+        print(dirtop);
+        float adirp = Mathf.Atan2(dirtop.x, dirtop.y) * Mathf.Rad2Deg;
+        print(adirp);
+        
+        if (distop > 4)
+        {
+            addvel += dirtop * 2000;
+            
+
+
+        }
+
+        addvel += rotateVector(dirtop, 90) * 2000;
+
+        rb.AddForce(addvel * Time.deltaTime);
+
     }
     void Shoot()
     {
+        GetComponent<AudioSource>().Play();
         GameObject bullet = Instantiate(bulletprefab, transform.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 

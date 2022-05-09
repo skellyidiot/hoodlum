@@ -7,7 +7,7 @@ public class FollowPath : MonoBehaviour
 {
     // Array of waypoints to walk from one to the next one
     [SerializeField]
-    private Transform[] waypoints;
+    public Transform[] waypoints;
    
 
     // Walk speed that can be set in Inspector
@@ -64,6 +64,7 @@ public class FollowPath : MonoBehaviour
     // Method that actually make Enemy walk
     private void Move()
     {
+        GetComponent<Animator>().SetBool("Gun", false);
         // If Enemy didn't reach last waypoint it can move
         // If enemy reached last waypoint then it stops
 
@@ -91,8 +92,10 @@ public class FollowPath : MonoBehaviour
                 if (waittime[waypointIndex] > 0 && waited == false)
                 {
                     waiting = true;
+                    GetComponent<Animator>().SetBool("Walk", false);
                 }
                 if (waiting == false) {
+                    GetComponent<Animator>().SetBool("Walk", true);
                     waited = false;
                     if (backing == false)
                     {
