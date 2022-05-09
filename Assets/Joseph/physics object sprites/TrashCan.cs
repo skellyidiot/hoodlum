@@ -66,7 +66,7 @@ public class TrashCan : PhysicsHitObject
         int TrashAmnt = Random.Range(10, 30);
         for (int i = 0; i < TrashAmnt; i++)
         {
-            GameObject e = Instantiate(Trash,transform.position,transform.rotation);
+            GameObject e = Instantiate(Trash,transform.position, transform.rotation);
             e.GetComponent<trash>().Begin();
         } 
     }
