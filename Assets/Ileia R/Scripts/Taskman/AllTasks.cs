@@ -50,7 +50,7 @@ public class AllTasks : MonoBehaviour
     public GameObject stairsDOWN;
     public GameObject spawnDOWN;
 
-    bool upthestairs = false;
+    public static bool upthestairs = false;
 
     // Start is called before the first frame update
 
@@ -183,6 +183,11 @@ public class AllTasks : MonoBehaviour
                 isInBuilding = true;
                 Room = 1;
             }
+            if (TaskmanTXTbox.doingTask4)
+            {
+                isInBuilding = true;
+                transform.position = new Vector3(-506f, 100f, 0f);
+            }
         }
         if (collision.gameObject.tag == "info" && hasInfo == false)
         {
@@ -257,6 +262,7 @@ public class AllTasks : MonoBehaviour
 
             RespawnRoomObjects(1);
             upthestairs = false;
+            TaskmanTXTbox.doneTask4 = true;
         }
         // LATER-- Add for when you kill mob boss
     }

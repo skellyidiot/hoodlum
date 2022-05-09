@@ -30,7 +30,7 @@ public class PointToTargert : MonoBehaviour
     }
     void Update()
     {
-        if(TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask2 == false && TaskmanTXTbox.doingTask1 == false)
+        if(TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask2 == false && TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask4 == false)
         {
             sr.enabled = false;
         }
@@ -82,10 +82,34 @@ public class PointToTargert : MonoBehaviour
         }
 
         //task 4
-        if(TaskmanTXTbox.doingTask4 == true)
+        if(TaskmanTXTbox.doingTask4 == true && AllTasks.isInBuilding == false)
+        {
+            sr.enabled = true;
+            Vector3 vectorToTarget = transform.position - GoIn.transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+        }
+        if(TaskmanTXTbox.doingTask4 == true && AllTasks.upthestairs == false && AllTasks.isInBuilding == true)
         {
             sr.enabled = true;
             Vector3 vectorToTarget = transform.position - stairsUp.transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+        }
+        if(TaskmanTXTbox.doingTask4 && AllTasks.upthestairs && AllTasks.isInBuilding == true)
+        {
+            sr.enabled = true;
+            Vector3 vectorToTarget = transform.position - MobBoss.transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+        }
+        if (TaskmanTXTbox.doingTask4 && RayCastTwoPointO.LeaderDead && AllTasks.isInBuilding == true)
+        {
+            sr.enabled = true;
+            Vector3 vectorToTarget = transform.position - stairsDown.transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);

@@ -25,10 +25,10 @@ public class TaskmanTXTbox : MonoBehaviour
     public static bool doingTask3;
     public static bool doingTask4;
 
-    public static bool doneTask1;
-    public static bool doneTask2;
-    public static bool doneTask3;
-    public static bool doneTask4;
+    public static bool doneTask1 = false;
+    public static bool doneTask2 = false;
+    public static bool doneTask3 = false;
+    public static bool doneTask4 = false;
 
     private string Text1 = "Do whatever you want";
     private string Text2 = "Do whatever I want";
@@ -46,15 +46,17 @@ public class TaskmanTXTbox : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(doingTask4 + "=====================================================");
         if (Input.GetKeyDown("l"))
         {
             doneTask1 = true;
             doneTask2 = true;
             doneTask3 = true;
+            //doingTask4 = false;
 
-            System.Threading.Thread.Sleep(1000);
-            AllTasks.isInBuilding = true;
-            player.transform.position = spawnNextToMan.transform.position;
+            //System.Threading.Thread.Sleep(1000);
+            //AllTasks.isInBuilding = true;
+            //player.transform.position = spawnNextToMan.transform.position;
         }
         if (isTalking == true)
         {
@@ -73,7 +75,7 @@ public class TaskmanTXTbox : MonoBehaviour
                 doingTask3 = true;
                 RootObjectOfHFactsTextBox.SetActive(false);
             }
-            if(Input.GetKeyDown("4") && doneTask1 == true && doneTask2 == true && doneTask3 == true && doneTask4 == false)
+            if(Input.GetKeyDown("4") && doneTask1 == true && doneTask2 == true && doneTask3 == true)
             {
                 doingTask4 = true;
                 RootObjectOfHFactsTextBox.SetActive(false);
