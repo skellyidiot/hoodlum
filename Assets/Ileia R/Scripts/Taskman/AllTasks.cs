@@ -98,11 +98,15 @@ public class AllTasks : MonoBehaviour
         pointB = GameObject.FindGameObjectWithTag("Point B");
         pointB.SetActive(false);
         spawnerIfFail = GameObject.FindGameObjectWithTag("failSpawn");
+
+        //task 4
+        stairsDOWN.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         //Task 1
         
         //if (isInBuilding)
@@ -150,6 +154,10 @@ public class AllTasks : MonoBehaviour
         if(RayCastTwoPointO.LeaderDead == true)
         {
             TaskmanTXTbox.doneTask4 = true;
+        }
+        if (RayCastTwoPointO.LeaderDead)
+        {
+            stairsDOWN.SetActive(true);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -234,7 +242,7 @@ public class AllTasks : MonoBehaviour
                
             }
         }
-        if (collision.gameObject.tag == "stairsDown" && TaskmanTXTbox.doingTask4 == true && RayCastTwoPointO.LeaderDead == true)
+        if (collision.gameObject.tag == "stairsDown")
         {
             gameObject.transform.position = spawnDOWN.transform.position;
             System.Threading.Thread.Sleep(1000);

@@ -195,7 +195,7 @@ public class RayCastTwoPointO : MonoBehaviour
             Destroy(collision.gameObject);
             agro = true;
             HP -= 20;
-            if (HP <= 0 && this.gameObject.tag != "Leader")
+            if (HP <= 0 && this.gameObject.tag != "HouseLeader")
             {
                 Destroy(gameObject);
             }
