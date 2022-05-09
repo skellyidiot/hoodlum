@@ -16,6 +16,10 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "PhysicsObjects")
+        {
+            collision.gameObject.GetComponent<PhysicsHitObject>().Hit(100, transform.position, transform.eulerAngles.z);
+        }
     }
 
 }
