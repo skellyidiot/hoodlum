@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         HPBar.GetComponent<Slider>().value = Hp / 100;
 
         TimeSinceHit = 0;
+
+        StartCoroutine(WaitBeforeAdd());
     }
 
     // Update is called once per frame
@@ -167,12 +169,6 @@ public class PlayerMovement : MonoBehaviour
         }
         StaminaWheel.GetComponent<Image>().fillAmount = stamina / 10;
 
-        
-        
-        
-         StartCoroutine(WaitBeforeAdd());
-        
-
         if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("Menu");
 
         mousePos = Input.mousePosition;
@@ -233,12 +229,15 @@ public class PlayerMovement : MonoBehaviour
     //}
     IEnumerator WaitBeforeAdd()
     {
-        if (Hp < 100)
+        while (true)
         {
-            Hp += 1;
-            yield return new WaitForSeconds(2);
-            HPBar.GetComponent<Slider>().value = Hp / 100;
-            yield return new WaitForSeconds(2);
+            if (Hp < 100)
+            {
+                Hp += 1;
+                HPBar.GetComponent<Slider>().value = Hp / 100;
+            }
+            yield return new WaitForSeconds(1);
+            //yield return new WaitForSeconds(2);
         }
     }
 }
