@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         isDead = true;
         Hp = 100;
         HPBar.GetComponent<Slider>().value = Hp / 100;
+        GetComponent<WhenDead>().Dead();
     }
     public void Hit(float damage)
     {

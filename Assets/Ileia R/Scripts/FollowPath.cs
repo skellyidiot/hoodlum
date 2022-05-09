@@ -54,10 +54,7 @@ public class FollowPath : MonoBehaviour
                 }
             }
             // Move Enemy
-            if (AllTasks.isInBuilding)
-            {
-                Move();
-            }
+            Move();
         }
     }
 

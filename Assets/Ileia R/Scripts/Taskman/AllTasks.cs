@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class AllTasks : MonoBehaviour
 {
+
+    public static AllTasks TheTaskSctipt;
+
     public GameObject rain;
     public GameObject arrow;
     //task 1
@@ -14,6 +17,12 @@ public class AllTasks : MonoBehaviour
     public GameObject DropOfftext;
     public GameObject basket;
     public GameObject moneyText;
+
+    public GameObject Room1Objects;
+    public GameObject Room2Objects;
+
+    public static GameObject room1Objects;
+    public static GameObject room2Objects;
 
     //task 2 
     public GameObject leader;
@@ -30,6 +39,8 @@ public class AllTasks : MonoBehaviour
     public static float timeLeft = 60;
     public GameObject spawnerIfFail;
 
+    public int Room = 0;
+
     //task 4
     public GameObject stairsUP;
     public GameObject spawnUP;
@@ -38,10 +49,37 @@ public class AllTasks : MonoBehaviour
     public GameObject stairsDOWN;
     public GameObject spawnDOWN;
 
+    bool upthestairs = false;
+
     // Start is called before the first frame update
+
+    public void SpawnRoomObjects(int room)
+    {
+        if (room == 1)
+        {
+            room1Objects = Instantiate(Room1Objects,new Vector3(), Quaternion.Euler(new Vector3()));
+        }
+        else if (room == 2)
+        {
+            room2Objects = Instantiate(Room2Objects, new Vector3(), Quaternion.Euler(new Vector3()));
+        }
+    }
+
+    public void RespawnRoomObjects(int room)
+    {
+        if (room == 1)
+        {
+            Destroy(room1Objects);
+        }
+        else if (room == 2)
+        {
+            Destroy(room2Objects);
+        }
+        SpawnRoomObjects(room);
+    }
     void Start()
     {
-
+        TheTaskSctipt = this;
         arrow = GameObject.FindGameObjectWithTag("arrow");
         //arrow.SetActive(false);
 
@@ -128,7 +166,12 @@ public class AllTasks : MonoBehaviour
         }
         if (collision.gameObject.tag == "DoorIn")
         {
-            isInBuilding = true;
+            if (!isInBuilding)
+            {
+                SpawnRoomObjects(1);
+                isInBuilding = true;
+                Room = 1;
+            }
         }
         if (collision.gameObject.tag == "info" && hasInfo == false)
         {
@@ -182,6 +225,13 @@ public class AllTasks : MonoBehaviour
         {
             gameObject.transform.position = spawnUP.transform.position;
             System.Threading.Thread.Sleep(1000);
+            Room = 2;
+            if (!upthestairs)
+            {
+                SpawnRoomObjects(2);
+                upthestairs = true;
+               
+            }
         }
         // LATER-- Add for when you kill mob boss
     }
