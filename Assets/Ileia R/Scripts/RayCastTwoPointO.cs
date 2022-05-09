@@ -199,7 +199,7 @@ public class RayCastTwoPointO : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            if (HP <= 0 && this.gameObject.tag == "Leader")
+            if (HP <= 0 && this.gameObject.tag == "HouseLeader")
             {
                 Destroy(gameObject);
                 LeaderDead = true;

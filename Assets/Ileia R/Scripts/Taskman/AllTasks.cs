@@ -46,6 +46,7 @@ public class AllTasks : MonoBehaviour
     public GameObject spawnUP;
     public bool HasGoneUp;
     public static bool HasKilledLeader;
+    public GameObject LeaderFINAL;
     public GameObject stairsDOWN;
     public GameObject spawnDOWN;
 
@@ -232,6 +233,15 @@ public class AllTasks : MonoBehaviour
                 upthestairs = true;
                
             }
+        }
+        if (collision.gameObject.tag == "stairsDown" && TaskmanTXTbox.doingTask4 == true && RayCastTwoPointO.LeaderDead == true)
+        {
+            gameObject.transform.position = spawnDOWN.transform.position;
+            System.Threading.Thread.Sleep(1000);
+            Room = 1;
+
+            RespawnRoomObjects(1);
+            upthestairs = false;
         }
         // LATER-- Add for when you kill mob boss
     }

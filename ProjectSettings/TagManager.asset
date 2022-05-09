@@ -31,6 +31,8 @@ TagManager:
   - BuildingSpawn
   - MobBoss
   - stairsUP
+  - stairsDown
+  - HouseLeader
   layers:
   - Default
   - TransparentFX

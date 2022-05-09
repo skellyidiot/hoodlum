@@ -8,6 +8,9 @@ using UnityEngine.Animations;
 
 public class TaskmanTXTbox : MonoBehaviour
 {
+    public GameObject spawnNextToMan;
+
+
     public GameObject player;
     int curtext = 0;
     private GameObject textobj;
@@ -48,6 +51,10 @@ public class TaskmanTXTbox : MonoBehaviour
             doneTask1 = true;
             doneTask2 = true;
             doneTask3 = true;
+
+            System.Threading.Thread.Sleep(1000);
+            AllTasks.isInBuilding = true;
+            player.transform.position = spawnNextToMan.transform.position;
         }
         if (isTalking == true)
         {
