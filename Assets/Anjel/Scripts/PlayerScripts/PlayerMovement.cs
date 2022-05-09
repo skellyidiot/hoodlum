@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     public static float TimeSinceHit;
     public bool isRegenHealth;
+
+    public float HpTimer;
     
     private void Start()
     {
@@ -47,9 +49,6 @@ public class PlayerMovement : MonoBehaviour
         ani = gameObject.GetComponent<Animator>();
         HPBar.GetComponent<Slider>().value = Hp / 100;
 
-        TimeSinceHit = 0;
-
-        StartCoroutine(WaitBeforeAdd());
     }
 
     // Update is called once per frame
@@ -61,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Hit(float damage)
     {
+        HpTimer = 0;
         Hp -= damage;
         HPBar.GetComponent<Slider>().value = Hp / 100;
         //print(Hp/100);
@@ -68,15 +68,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Die();
         }
-    }
-    void AddHp()
-    {
-        //if(Hp < 100)
-        //{
-        //    StartCoroutine(WaitBeforeAdd());
-        //    Hp += 1;
-        //    HPBar.GetComponent<Slider>().value = Hp / 100;
-        //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -169,6 +160,11 @@ public class PlayerMovement : MonoBehaviour
         }
         StaminaWheel.GetComponent<Image>().fillAmount = stamina / 10;
 
+
+        HPrecover();
+        
+        
+
         if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("Menu");
 
         mousePos = Input.mousePosition;
@@ -199,6 +195,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    void HPrecover()
+    {
+        HpTimer += Time.deltaTime;
+        if (HpTimer >= 8)
+        {
+            if (Hp < 100) 
+            {
+                Hp += Time.deltaTime * 25;
+                HPBar.GetComponent<Slider>().value = Hp / 100;
+            }
+        }
+        
+    }
     void FixedUpdate()
     {
         Vector2 m1 = rb.position;
@@ -227,17 +237,4 @@ public class PlayerMovement : MonoBehaviour
             
     //    }
     //}
-    IEnumerator WaitBeforeAdd()
-    {
-        while (true)
-        {
-            if (Hp < 100)
-            {
-                Hp += 1;
-                HPBar.GetComponent<Slider>().value = Hp / 100;
-            }
-            yield return new WaitForSeconds(1);
-            //yield return new WaitForSeconds(2);
-        }
-    }
 }
