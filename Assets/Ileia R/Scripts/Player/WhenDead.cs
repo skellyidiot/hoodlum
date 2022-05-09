@@ -35,10 +35,7 @@ public class WhenDead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(es.active == false)
-        {
-            Debug.Log("Its false");
-        }
+        
         if (PlayerMovement.isDead)
         {
             //es.active = false;
