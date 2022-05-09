@@ -172,6 +172,8 @@ public class AllTasks : MonoBehaviour
         if(collision.gameObject.tag == "DoorOut")
         {
             isInBuilding = false;
+            System.Threading.Thread.Sleep(1000);
+            transform.position = new Vector3(-96.3f, -54.9f, 0f);
         }
         if (collision.gameObject.tag == "DoorIn")
         {
@@ -209,6 +211,11 @@ public class AllTasks : MonoBehaviour
             dropOff.SetActive(true);
         }
 
+        //task 4
+        if(collision.gameObject.tag == "DoorOut" && RayCastTwoPointO.LeaderDead)
+        {
+            isInBuilding = false;
+        }
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
