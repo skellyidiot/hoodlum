@@ -105,6 +105,10 @@ public class RayCastTwoPointO : MonoBehaviour
             float rot_z = Mathf.Atan2(posdif.y, posdif.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
         }
+        if (PlayerMovement.isDead)
+        {
+            es.active = false;
+        }
         if (hitting.Count > 0)
         {
             bool phit = false;

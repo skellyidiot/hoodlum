@@ -56,8 +56,10 @@ public class PlayerMovement : MonoBehaviour
     void Die()
     {
         print("Dead");
-        Destroy(gameObject);
+        //Destroy(gameObject);
         isDead = true;
+        Hp = 100;
+        HPBar.GetComponent<Slider>().value = Hp / 100;
     }
     public void Hit(float damage)
     {
