@@ -42,13 +42,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isRegenHealth;
 
     public float HpTimer;
-    
+
     private void Start()
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
         ani = gameObject.GetComponent<Animator>();
         HPBar.GetComponent<Slider>().value = Hp / 100;
 
+        //StartCoroutine(WaitBeforeAdd());
     }
 
     // Update is called once per frame
@@ -91,33 +92,33 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Debug.Log(Hp);
-       if(Hp > 100)
-       {
+        if (Hp > 100)
+        {
             Hp = 100;
             gothit = false;
-       }
+        }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         if (movement != new Vector2())
-        //if (gothit)
-        //{
-        //    //StartCoroutine(WaitBeforeAdd());
-        //    AddHp();
-        //}
+            //if (gothit)
+            //{
+            //    //StartCoroutine(WaitBeforeAdd());
+            //    AddHp();
+            //}
 
-        //if (Input.GetKeyDown("h"))
-        //{
-        //Debug.Log(TimeSinceHit);
-        //}
-        //sprinting dont work is lame
+            //if (Input.GetKeyDown("h"))
+            //{
+            //Debug.Log(TimeSinceHit);
+            //}
+            //sprinting dont work is lame
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && stamina >= 0 && resting == false)
-        {
-            IsRunning = true;
-           moveSpeed = RUNSPEED;
-           ani.speed = 2;
+            if (Input.GetKeyDown(KeyCode.LeftShift) && stamina >= 0 && resting == false)
+            {
+                IsRunning = true;
+                moveSpeed = RUNSPEED;
+                ani.speed = 2;
 
-        }
+            }
         if (IsRunning == true)
         {
             stamina -= 0.8f * Time.deltaTime;
@@ -125,16 +126,16 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.LeftShift) || stamina <= 0)
         {
-           IsRunning = false;
+            IsRunning = false;
             moveSpeed = WALKSPEED;
             ani.speed = 1;
-            
+
         }
         if (stamina <= 0)
         {
             resting = true;
             StaminaWheel.GetComponent<Image>().color = Color.red;
-            
+
         }
         if (stamina >= 10)
         {
@@ -156,14 +157,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 stamina += 0.8f * Time.deltaTime;
             }
-            
+
         }
         StaminaWheel.GetComponent<Image>().fillAmount = stamina / 10;
 
 
         HPrecover();
-        
-        
+
+
 
         if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("Menu");
 
@@ -201,40 +202,36 @@ public class PlayerMovement : MonoBehaviour
         HpTimer += Time.deltaTime;
         if (HpTimer >= 8)
         {
-            if (Hp < 100) 
+            if (Hp < 100)
             {
                 Hp += Time.deltaTime * 25;
                 HPBar.GetComponent<Slider>().value = Hp / 100;
             }
         }
-        
+
     }
     void FixedUpdate()
     {
         Vector2 m1 = rb.position;
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        movementdif = rb.position - movement * moveSpeed * Time.fixedDeltaTime - rb.position ;
-        
+        movementdif = rb.position - movement * moveSpeed * Time.fixedDeltaTime - rb.position;
+
 
         Vector2 lookDir = mousePos.normalized;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
     }
-    //private IEnumerator RegainHealthOverTime()
+    //IEnumerator WaitBeforeAdd()
     //{
-    //    while(true)
+    //    while (true)
     //    {
-    //        if(Hp < 100)
+    //        if (Hp < 100)
     //        {
-    //            Debug.Log("IS REGAINING HEALTH AND IS AT:" + Hp);
-    //            yield return new WaitForSeconds(1);
     //            Hp += 1;
+    //            HPBar.GetComponent<Slider>().value = Hp / 100;
     //        }
-    //        else
-    //        {
-    //            yield return null;
-    //        }
-            
+    //        yield return new WaitForSeconds(1);
+    //        //yield return new WaitForSeconds(2);
     //    }
     //}
 }
