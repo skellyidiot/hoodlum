@@ -33,7 +33,8 @@ public class FollowPath : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-
+        GetComponent<Animator>().SetBool("Walk", true);
+        GetComponent<Animator>().SetBool("Gun", false);
         // Set position of Enemy as position of the first waypoint
         transform.position = waypoints[waypointIndex].transform.position;
     }
