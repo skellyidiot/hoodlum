@@ -74,14 +74,14 @@ public class PatrolScri2pt2D : MonoBehaviour
         distance = Vector3.Distance(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position);
 
         speed = distance * ratio * 10f;
-        pathTime = speed;
+        pathTime = speed * Time.deltaTime;
         currentTime += Time.deltaTime;
         NormalVector = new Vector2(-patrolPoints[patrolPath].position.y, patrolPoints[patrolPath].position.x);
         NextPosion = new Vector2(patrolPoints[(patrolPath + 1) % nPoints].position.x, patrolPoints[(patrolPath + 1) % nPoints].position.y);
         angle = Vector2.Dot(NormalVector, NextPosion);
         currentTime += Time.deltaTime;
 
-        if (currentTime > speed)
+        if (currentTime > speed * Time.deltaTime)
 
         {
 
@@ -107,7 +107,7 @@ public class PatrolScri2pt2D : MonoBehaviour
 
         }
 
-        transform.position = Vector3.Lerp(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position, currentTime / (speed));
+        transform.position = Vector3.Lerp(patrolPoints[patrolPath].position, patrolPoints[(patrolPath + 1) % nPoints].position, currentTime / (speed * Time.deltaTime));
 
 
 
