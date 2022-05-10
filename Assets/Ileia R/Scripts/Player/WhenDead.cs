@@ -7,7 +7,7 @@ public class WhenDead : MonoBehaviour
 
     public GameObject player;
     public GameObject SpawinInBuilding;
-
+    public GameObject UpstairsSpawner;
 
     public GameObject safe;
     // Start is called before the first frame update
@@ -24,7 +24,14 @@ public class WhenDead : MonoBehaviour
     {
         RayCastTwoPointO.encountered.Clear();
         AllTasks.TheTaskSctipt.UnCounter();
-        player.transform.position = SpawinInBuilding.transform.position;
+        if (AllTasks.upthestairs)
+        {
+            player.transform.position = UpstairsSpawner.transform.position;
+        }
+        else
+        {
+            player.transform.position = SpawinInBuilding.transform.position;
+        }
         AllTasks.TheTaskSctipt.RespawnRoomObjects(AllTasks.TheTaskSctipt.Room);
     }
 

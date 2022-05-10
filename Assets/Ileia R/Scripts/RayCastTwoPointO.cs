@@ -227,9 +227,9 @@ public class RayCastTwoPointO : MonoBehaviour
                 Destroy(gameObject);
 
             }
-            if (HP <= 0 && this.gameObject.tag == "HouseLeader")
+            if (HP <= 0 && gameObject.tag == "HouseLeader")
             {
-               
+                TaskmanTXTbox.doneTask4 = true;
                 Destroy(gameObject);
                 LeaderDead = true;
             }

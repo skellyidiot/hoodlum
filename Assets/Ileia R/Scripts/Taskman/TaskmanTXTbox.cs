@@ -145,7 +145,7 @@ public class TaskmanTXTbox : MonoBehaviour
             //do stuff for task 4 
             txt.text = "Jeez, you've come a long way! Now for the main challenge: \n 4.) Go back to the mob boss's house and kill him in his office upstairs";
         }
-        if (doneTask1 == true && doneTask2 == true && doneTask3 == true &&  doneTask4 == true)
+        if (doneTask1 == true && doneTask2 == true && doneTask3 == true &&  RayCastTwoPointO.LeaderDead)
         {
             txt.text = "Good job you are done!";
             anim.Play("fadeOut");
