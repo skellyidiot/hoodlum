@@ -17,7 +17,7 @@ public class tutorialTriggers : MonoBehaviour
         sr = this.GetComponent<SpriteRenderer>();
         sr.enabled = false;
 
-        enemyCount = 5;
+        enemyCount = 3;
     }
 
     // Update is called once per frame
