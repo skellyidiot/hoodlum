@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/mainLevl.unity
     guid: ae1dd35640896374aaaf6404126f8cf8
+  - enabled: 1
+    path: Assets/win.unity
+    guid: f25de2189e4eff145ae1db0e7706f940
   - enabled: 0
     path: Assets/Ileia R/TestScenes/Two.unity
     guid: 070acb98e1e29364eb8151f209abac24
