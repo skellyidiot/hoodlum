@@ -62,6 +62,7 @@ public class AllTasks : MonoBehaviour
         }
         else if (room == 2)
         {
+
             room2Objects = Instantiate(Room2Objects, new Vector3(), Quaternion.Euler(new Vector3()));
         }
     }
@@ -75,6 +76,7 @@ public class AllTasks : MonoBehaviour
         else if (room == 2)
         {
             Destroy(room2Objects);
+            Destroy(room1Objects);
         }
         SpawnRoomObjects(room);
     }
