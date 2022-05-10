@@ -50,10 +50,32 @@ public class AllTasks : MonoBehaviour
     public GameObject stairsDOWN;
     public GameObject spawnDOWN;
 
-    bool upthestairs = false;
+    public AudioClip IndoorMusic;
+
+    public static bool upthestairs = false;
+
+    public AudioClip InsideMusic;
+    public AudioClip EncounterMusic;
+    public AudioClip BossMusic;
 
     // Start is called before the first frame update
 
+    public  void Encounter()
+    {
+        Music.ChangeMusic(EncounterMusic);
+    }
+
+    public void UnCounter()
+    {
+        if (isInBuilding)
+        {
+            Music.ChangeMusic(InsideMusic);
+        }
+        else
+        {
+            Music.ChangeMusic(Music.MapMusic);
+        }
+    }
     public void SpawnRoomObjects(int room)
     {
         if (room == 1)
@@ -136,7 +158,8 @@ public class AllTasks : MonoBehaviour
         if (TaskmanTXTbox.doingTask3 == true)
         {
             pointB.SetActive(true);
-            if(timeLeft > 0)
+            Music.ChangeMusic(IndoorMusic);
+            if (timeLeft > 0)
             {
                 timeLeft -= Time.deltaTime;
             }
@@ -167,23 +190,32 @@ public class AllTasks : MonoBehaviour
         //task 1
         if(collision.gameObject.tag == "basket")
         {
-            Destroy(basket);
-            Destroy(DropOfftext);
-            Destroy(moneyText);
+            basket.SetActive(false);
+            DropOfftext.SetActive(false);
+            moneyText.SetActive(false);
+            hasInfo = false;
+            TaskFinished();
         }
         if(collision.gameObject.tag == "DoorOut")
         {
             isInBuilding = false;
             System.Threading.Thread.Sleep(1000);
             transform.position = new Vector3(-96.3f, -54.9f, 0f);
+            Music.ChangeMusic(Music.MapMusic);
+
         }
         if (collision.gameObject.tag == "DoorIn")
         {
-            if (!isInBuilding)
-            {
+
+                Music.ChangeMusic(InsideMusic);
                 SpawnRoomObjects(1);
                 isInBuilding = true;
                 Room = 1;
+
+            if (TaskmanTXTbox.doingTask4)
+            {
+                isInBuilding = true;
+                transform.position = new Vector3(-506f, 100f, 0f);
             }
         }
         if (collision.gameObject.tag == "info" && hasInfo == false)
@@ -220,6 +252,10 @@ public class AllTasks : MonoBehaviour
         }
         
     }
+    void TaskFinished()
+    {
+        Music.ChangeMusic(Music.MapMusic);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {   
         //task 2
@@ -228,6 +264,7 @@ public class AllTasks : MonoBehaviour
             //Destroy(leader);
             Destroy(dropOff);
             TaskmanTXTbox.doneTask2 = true;
+            TaskFinished();
         }
         //task 3
         if (collision.gameObject.tag == "Point B" && timeLeft > 0)
@@ -236,6 +273,7 @@ public class AllTasks : MonoBehaviour
             pointB.SetActive(false);
             TaskmanTXTbox.doneTask3 = true;
             timeLeft = 60;
+            TaskFinished();
         }
 
         //task 4
@@ -259,6 +297,7 @@ public class AllTasks : MonoBehaviour
 
             RespawnRoomObjects(1);
             upthestairs = false;
+            TaskmanTXTbox.doneTask4 = true;
         }
         // LATER-- Add for when you kill mob boss
     }

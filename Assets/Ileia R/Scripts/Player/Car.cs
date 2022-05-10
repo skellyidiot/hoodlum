@@ -7,7 +7,6 @@ using Cinemachine;
 public class Car : MonoBehaviour
 {
     public AudioClip radio;
-    AudioSource audioSource;
 
     public static bool isCollidedLeft;
     public static bool isCollidedRight;
@@ -44,10 +43,11 @@ public class Car : MonoBehaviour
     public GameObject RootObjectOfHFactsTextBox;
 
     public static bool hasbeenincar;
+    bool radion = true;
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = transform.GetChild(3).gameObject.GetComponent<AudioSource>();
+        
 
         isDriving = false;
         RootObjectOfHFactsTextBox.SetActive(false);
@@ -99,10 +99,12 @@ public class Car : MonoBehaviour
             vR = car.transform.eulerAngles;
 
         }
-        if(isDriving == true && Input.GetKey(KeyCode.F))
+        if(isDriving == true && Input.GetKeyDown(KeyCode.F))
         {
             if (isDriving == true)
             {
+                RadioGetOUt();
+                
                 //if(isCollidedLeft == false)
                 //{
                 //    carX = car.transform.position.x - .2F;
@@ -145,12 +147,13 @@ public class Car : MonoBehaviour
                 //Debug.Log("================================CAR ZR:   " + carZR);
 
                 isDriving = false;
-                RadioGetInCar();
+                
             }
         }
         if(isDriving == false)
         {
-            RadioGetOUt();
+
+            
 
             this.GetComponent<PlayerMovement>().enabled = true;
             this.GetComponent<Shoot>().enabled = true;
@@ -168,6 +171,19 @@ public class Car : MonoBehaviour
         }
         if(isDriving == true)
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (!radion)
+                {
+                    radion = true;
+                    RadioGetInCar();
+                }
+                else
+                {
+                    radion = false;
+                    RadioGetOUt();
+                }
+            }
             smoke.SetActive(true);
         }
     }
@@ -203,13 +219,15 @@ public class Car : MonoBehaviour
 
     private void EnterCar()
     {
-        RadioGetInCar();
         gameObject.transform.position = car.transform.position;
         gameObject.transform.rotation = Quaternion.Euler(carXR, carYR, carZR);
         car.transform.SetParent(gameObject.transform);
         car.transform.rotation = Quaternion.Euler(new Vector3(carXR, carYR, carZR));
         transform.eulerAngles = vR;
-
+        if (radion)
+        {
+            RadioGetInCar();
+        }
         //car.transform.rotation = carRotation;
         WaitForSeconds();
         //Invoke("PauseForABit",0.06f);
@@ -229,12 +247,12 @@ public class Car : MonoBehaviour
 
     void RadioGetInCar()
     {
-        audioSource.Play();
+        Music.ChangeMusic(radio);
         Debug.Log("PLAYING RADIO!!");
     }
     void RadioGetOUt()
-    {
-        audioSource.Pause();
+    { 
+        Music.ChangeMusic(Music.MapMusic);
         //Debug.Log("Out of car!!");
     }
 }

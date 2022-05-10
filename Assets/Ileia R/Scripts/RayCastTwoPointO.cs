@@ -30,6 +30,8 @@ public class RayCastTwoPointO : MonoBehaviour
 
     public EnemySeek es;
 
+    public static List<GameObject> encountered = new List<GameObject>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -99,7 +101,6 @@ public class RayCastTwoPointO : MonoBehaviour
         }
         if (player != null && agro)
         {
-            
             Vector2 posdif = (transform.position - player.transform.position);
             posdif  += player.GetComponent<PlayerMovement>().movementdif * 15;
             float rot_z = Mathf.Atan2(posdif.y, posdif.x) * Mathf.Rad2Deg;
@@ -116,6 +117,15 @@ public class RayCastTwoPointO : MonoBehaviour
             {
                 if (h.collider.gameObject.tag == "Player")
                 {
+                    if (!agro)
+                    {
+                        encountered.Add(gameObject);
+                        AllTasks.TheTaskSctipt.Encounter();
+                    }
+                    if (seeking)
+                    {
+                        doneSeeking();
+                    }
                     GetComponent<Animator>().SetBool("Gun", true);
                     agro = true;
                     phit = true;
@@ -137,6 +147,9 @@ public class RayCastTwoPointO : MonoBehaviour
                     agrotimer += Time.deltaTime;
                     if (agrotimer >= 1)
                     {
+
+
+
                         es.target = player.transform; 
                         seeking = true;
                         es.returning = false;
@@ -191,16 +204,32 @@ public class RayCastTwoPointO : MonoBehaviour
     {
         if (collision.tag == "Bullet")
         {
+            if (seeking)
+            {
+                doneSeeking();
+            }
             player = collision.gameObject.GetComponent<Bullet>().Owner;
             Destroy(collision.gameObject);
+            if (!agro)
+            {
+                encountered.Add(gameObject);
+                AllTasks.TheTaskSctipt.Encounter();
+            }
             agro = true;
-            HP -= 20;
+            HP -= 25;
             if (HP <= 0 && this.gameObject.tag != "HouseLeader")
             {
+                encountered.Remove(gameObject);
+                if (encountered.Count <= 0)
+                {
+                    AllTasks.TheTaskSctipt.UnCounter();
+                }
                 Destroy(gameObject);
+
             }
             if (HP <= 0 && this.gameObject.tag == "HouseLeader")
             {
+               
                 Destroy(gameObject);
                 LeaderDead = true;
             }
@@ -209,6 +238,11 @@ public class RayCastTwoPointO : MonoBehaviour
     }
     public void doneSeeking()
     {
+        encountered.Remove(gameObject);
+        if (encountered.Count <= 0)
+        {
+            AllTasks.TheTaskSctipt.UnCounter();
+        }
         GetComponent<Animator>().SetBool("Gun", false);
         seeking = false;
         agrotimer = 0;
@@ -220,6 +254,15 @@ public class RayCastTwoPointO : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            if (seeking)
+            {
+                doneSeeking();
+            }
+            if (!agro)
+            {
+                encountered.Add(gameObject);
+                AllTasks.TheTaskSctipt.Encounter();
+            }
             player = collision.gameObject;
             agro = true;
         }

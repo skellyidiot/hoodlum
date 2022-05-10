@@ -22,6 +22,8 @@ public class WhenDead : MonoBehaviour
 
     public void Dead()
     {
+        RayCastTwoPointO.encountered.Clear();
+        AllTasks.TheTaskSctipt.UnCounter();
         player.transform.position = SpawinInBuilding.transform.position;
         AllTasks.TheTaskSctipt.RespawnRoomObjects(AllTasks.TheTaskSctipt.Room);
     }
