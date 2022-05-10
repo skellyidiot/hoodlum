@@ -8,6 +8,7 @@ public class PointToTargert : MonoBehaviour
     public float speed = 2f;
     public SpriteRenderer sr;
     //task 1 objects
+    public GameObject GoOut;
     public GameObject safe;
     public GameObject GoIn;
     //task 2 objects
@@ -29,7 +30,7 @@ public class PointToTargert : MonoBehaviour
         jose = GameObject.FindGameObjectWithTag("TaskMan");
         sr = gameObject.GetComponent<SpriteRenderer>();
         sr.enabled = false;
-        
+        GoOut = GameObject.FindGameObjectWithTag("DoorOut");
     }
     void Update()
     {
@@ -58,9 +59,21 @@ public class PointToTargert : MonoBehaviour
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
         }
-        if(AllTasks.hasInfo == true)
+        if(AllTasks.hasInfo == true && AllTasks.isInBuilding)
         {
-            sr.enabled = false;
+            sr.enabled = true;
+            Vector3 vectorToTarget = transform.position - GoOut.transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+        }
+        if(AllTasks.hasInfo && AllTasks.isInBuilding && TaskmanTXTbox.doingTask1)
+        {
+            sr.enabled = true;
+            Vector3 vectorToTarget = transform.position - jose.transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
         }
 
         if (TaskmanTXTbox.doingTask2 == true && TaskmanTXTbox.doneTask2 == false && AllTasks.LeaderInCar == false)
