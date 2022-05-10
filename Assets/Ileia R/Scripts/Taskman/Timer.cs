@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -29,12 +30,15 @@ public class Timer : MonoBehaviour
         //time = AllTasks.timeLeft;
         string textTime = string.Format("{0}", Mathf.RoundToInt(time));
 
-        //if(time <= 0 && TaskmanTXTbox.doneTask2 == false)
-        //{
-        //    stopTimer = true;
-        //    sliderObject.SetActive(false);
-        //}
-        if(TaskmanTXTbox.doingTask3 == true && TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask2 == false)
+        if (time <= 0 && TaskmanTXTbox.doingTask3)
+        {
+            time = 60;
+            TaskmanTXTbox.doingTask3 = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
+            sliderObject.SetActive(false);
+        }
+        if (TaskmanTXTbox.doingTask3 == true && TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask2 == false)
         {
             time -= Time.deltaTime;
             //time = AllTasks.timeLeft;
@@ -46,13 +50,12 @@ public class Timer : MonoBehaviour
         if (TaskmanTXTbox.doneTask3 == true)
         {
             //stopTimer = true;
-            //time = 60;
+            time = 60;
             sliderObject.SetActive(false);
         }
-        if(time == 0)
-        {
-            timerText.text = textTime;
-            timerSlider.value = AllTasks.timeLeft;
-        }
+        //if(time <= 58)
+        //{
+        //    SceneManager.LoadScene("mainLevl");
+        //}
     }
 }
