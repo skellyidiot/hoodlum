@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PointToTargert : MonoBehaviour
 {
+    public GameObject jose;
     public float speed = 2f;
     public SpriteRenderer sr;
     //task 1 objects
@@ -25,14 +26,20 @@ public class PointToTargert : MonoBehaviour
 
     private void Start()
     {
+        jose = GameObject.FindGameObjectWithTag("TaskMan");
         sr = gameObject.GetComponent<SpriteRenderer>();
         sr.enabled = false;
+        
     }
     void Update()
     {
         if(TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask2 == false && TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask4 == false)
         {
-            sr.enabled = false;
+            sr.enabled = true;
+            Vector3 vectorToTarget = transform.position - jose.transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
         }
         if (TaskmanTXTbox.doingTask1 == true && TaskmanTXTbox.doneTask1 == false && AllTasks.isInBuilding == false)
         {
@@ -44,6 +51,7 @@ public class PointToTargert : MonoBehaviour
         }
         if (AllTasks.isInBuilding == true && AllTasks.hasInfo == false && TaskmanTXTbox.doneTask1 == false)
         {
+            safe = AllTasks.TheTaskSctipt.infosteal;
             sr.enabled = true;
             Vector3 vectorToTarget = transform.position - safe.transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;

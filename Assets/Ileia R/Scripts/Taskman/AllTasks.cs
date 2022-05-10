@@ -196,17 +196,15 @@ public class AllTasks : MonoBehaviour
             hasInfo = false;
             TaskFinished();
         }
-        if(collision.gameObject.tag == "DoorOut")
+        if(collision.gameObject.tag == "DoorOut" && TaskmanTXTbox.doingTask1 && hasInfo == true)
         {
             isInBuilding = false;
             System.Threading.Thread.Sleep(1000);
             transform.position = new Vector3(-96.3f, -54.9f, 0f);
             Music.ChangeMusic(Music.MapMusic);
-
         }
-        if (collision.gameObject.tag == "DoorIn")
+        if (collision.gameObject.tag == "DoorIn" && (TaskmanTXTbox.doingTask1 || TaskmanTXTbox.doingTask4))
         {
-
                 Music.ChangeMusic(InsideMusic);
                 SpawnRoomObjects(1);
                 isInBuilding = true;
