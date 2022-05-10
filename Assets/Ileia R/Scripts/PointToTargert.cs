@@ -34,7 +34,7 @@ public class PointToTargert : MonoBehaviour
     }
     void Update()
     {
-        if(TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask2 == false && TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask4 == false)
+        if(TaskmanTXTbox.doingTask1 == false && TaskmanTXTbox.doingTask2 == false && TaskmanTXTbox.doingTask3 == false && TaskmanTXTbox.doingTask4 == false)
         {
             sr.enabled = true;
             Vector3 vectorToTarget = transform.position - jose.transform.position;
@@ -93,6 +93,7 @@ public class PointToTargert : MonoBehaviour
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
         }
+        //task 3
         if (TaskmanTXTbox.doingTask3 == true && TaskmanTXTbox.doneTask3 == false)
         {
             sr.enabled = true;
