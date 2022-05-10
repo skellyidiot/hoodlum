@@ -76,6 +76,18 @@ public class AllTasks : MonoBehaviour
             Music.ChangeMusic(Music.MapMusic);
         }
     }
+    void DeleteRoomObjects(int room)
+    {
+        if (room == 1)
+        {
+            Destroy(room1Objects);
+        }
+        else if (room == 2)
+        {
+            Destroy(room2Objects);
+            Destroy(room1Objects);
+        }
+    }
     public void SpawnRoomObjects(int room)
     {
         if (room == 1)
