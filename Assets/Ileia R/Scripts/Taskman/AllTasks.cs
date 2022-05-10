@@ -54,8 +54,28 @@ public class AllTasks : MonoBehaviour
 
     public static bool upthestairs = false;
 
+    public AudioClip InsideMusic;
+    public AudioClip EncounterMusic;
+    public AudioClip BossMusic;
+
     // Start is called before the first frame update
 
+    public  void Encounter()
+    {
+        Music.ChangeMusic(EncounterMusic);
+    }
+
+    public void UnCounter()
+    {
+        if (isInBuilding)
+        {
+            Music.ChangeMusic(InsideMusic);
+        }
+        else
+        {
+            Music.ChangeMusic(Music.MapMusic);
+        }
+    }
     public void SpawnRoomObjects(int room)
     {
         if (room == 1)
@@ -179,17 +199,17 @@ public class AllTasks : MonoBehaviour
             isInBuilding = false;
             System.Threading.Thread.Sleep(1000);
             transform.position = new Vector3(-96.3f, -54.9f, 0f);
+            Music.ChangeMusic(Music.MapMusic);
 
         }
         if (collision.gameObject.tag == "DoorIn")
         {
-            if (!isInBuilding)
-            {
-                
+
+                Music.ChangeMusic(InsideMusic);
                 SpawnRoomObjects(1);
                 isInBuilding = true;
                 Room = 1;
-            }
+
             if (TaskmanTXTbox.doingTask4)
             {
                 isInBuilding = true;
