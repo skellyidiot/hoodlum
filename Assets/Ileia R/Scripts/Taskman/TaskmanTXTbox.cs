@@ -41,8 +41,8 @@ public class TaskmanTXTbox : MonoBehaviour
     {
         RootObjectOfHFactsTextBox.SetActive(false);
 
-        txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Hey, I am task man, which task do you want to do? Select the corresponding key" +
-            "\n 1.) Go infiltrate the mob boss's house and steal money and items to give back to the people he stole from" +
+        txt.GetComponentInChildren<UnityEngine.UI.Text>().text = "Hey, I am Jose the task man, which task do you want to do? Select the corresponding key" +
+            "\n 1.) Go infiltrate the mob boss's house and steal a safe, money, and items to give back to the people he stole from" +
             " \n 2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation to find \nout where he keeps the rest of his money\n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 seconds";
     }
 
@@ -59,6 +59,16 @@ public class TaskmanTXTbox : MonoBehaviour
             //System.Threading.Thread.Sleep(1000);
             //AllTasks.isInBuilding = true;
             //player.transform.position = spawnNextToMan.transform.position;
+        }
+
+        if (Input.GetKeyDown("m")){
+            doneTask1 = true;
+        }
+        if (Input.GetKeyDown("n")){
+            doneTask2 = true;
+        }
+        if (Input.GetKeyDown("b")){
+            doneTask3 = true;
         }
         if (isTalking == true)
         {
@@ -108,27 +118,27 @@ public class TaskmanTXTbox : MonoBehaviour
         if (doneTask1 == true && doneTask2 == true && doneTask3 == false && doingTask3 == false)
         {
             //do stuff for task 3 
-            txt.text = "good job doing task 1 and 2, you can only do this task: \n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 seconds";
+            txt.text = "good job doing task 1 and 2, you can only do this task: \n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 seconds \n then come back to me for a real challenge";
         }
         if (doneTask1 == false && doneTask2 == true && doneTask3 == false && doingTask3 == false && doingTask1 == false)
         {
             //do stuff for task 1 and 3  
-            txt.text = "good job doing task 2, you can only do this task: \n  1.) Go infiltrate the mob boss's house and steal money and items to give back to the people he stole from \n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 seconds";
+            txt.text = "good job doing task 2, you can only do this task: \n  1.) Go infiltrate the mob boss's house and steal a safe, money, and items to give back to the people he stole from \n 3.) I have a bunch of food, give them the food bank, and get there before it gets cold in 60 seconds";
         }
         if (doneTask1 == true && doneTask3 == true && doneTask2 != true && doingTask2 != true)
         {
             //do stuff for task 2 
-            txt.text = "Good job doing task 1 and task 3, now do this task: \n 2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation to find \nout where he keeps the rest of his money";
+            txt.text = "Good job doing task 1 and task 3, now do this task: \n 2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation to find \nout where he keeps the rest of his money \n then come back to me for a real challenge";
         }
         if(doneTask2 == true && doneTask3 == true && doneTask1 != true && doingTask1 != true)
         {
             //do stuff for task 1 
-            txt.text = "Good job doing task 2 and task 3, now do this task: \n  1.) Go infiltrate the mob boss's house and steal money and items to give back to the people he stole from ";
+            txt.text = "Good job doing task 2 and task 3, now do this task: \n  1.)  Go infiltrate the mob boss's house and steal a safe, money, and items to give back to the people he stole from \n then come back to me for a real challenge";
         }
         if (doneTask2 != true && doneTask3 == true && doneTask1 != true && doingTask1 != true && doingTask2 != true)
         {
             //do stuff for task 1 and 2
-            txt.text = "Good job doing task 3, now do this task: \n 1.) Go infiltrate the mob boss's house and steal money and items to give back to the people he stole from \n 2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation to find \nout where he keeps the rest of his money";
+            txt.text = "Good job doing task 3, now do this task: \n 1.)  Go infiltrate the mob boss's house and steal a safe, money, and items to give back to the people he stole from \n 2.) Pose as the Mob boss's driver and drive him to his destination and listen to his conversation to find \nout where he keeps the rest of his money";
         }
         if (doneTask1 == true && doneTask2 == true && doneTask3 == true && doneTask4 == false)
         {
