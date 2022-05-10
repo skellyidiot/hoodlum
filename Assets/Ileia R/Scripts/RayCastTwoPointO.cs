@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-
+using UnityEngine.SceneManagement;
 public class RayCastTwoPointO : MonoBehaviour
 {
     public LayerMask layer;
@@ -229,6 +229,8 @@ public class RayCastTwoPointO : MonoBehaviour
             }
             if (HP <= 0 && gameObject.tag == "HouseLeader")
             {
+                System.Threading.Thread.Sleep(1000);
+                SceneManager.LoadScene("win");
                 TaskmanTXTbox.doneTask4 = true;
                 Destroy(gameObject);
                 LeaderDead = true;
