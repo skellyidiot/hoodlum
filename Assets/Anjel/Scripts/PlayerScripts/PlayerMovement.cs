@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void footstep()
     {
-        transform.GetChild(4).gameObject.GetComponent<AudioSource>().Play();
+        transform.GetChild(2).gameObject.GetComponent<AudioSource>().Play();
         FootSteped = false;
     }
     void Update()

@@ -194,7 +194,7 @@ public class RayCastTwoPointO : MonoBehaviour
             player = collision.gameObject.GetComponent<Bullet>().Owner;
             Destroy(collision.gameObject);
             agro = true;
-            HP -= 20;
+            HP -= 25;
             if (HP <= 0 && this.gameObject.tag != "HouseLeader")
             {
                 Destroy(gameObject);

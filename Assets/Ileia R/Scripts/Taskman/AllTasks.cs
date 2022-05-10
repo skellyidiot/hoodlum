@@ -50,6 +50,8 @@ public class AllTasks : MonoBehaviour
     public GameObject stairsDOWN;
     public GameObject spawnDOWN;
 
+    public AudioClip IndoorMusic;
+
     public static bool upthestairs = false;
 
     // Start is called before the first frame update
@@ -134,7 +136,8 @@ public class AllTasks : MonoBehaviour
         if (TaskmanTXTbox.doingTask3 == true)
         {
             pointB.SetActive(true);
-            if(timeLeft > 0)
+            Music.ChangeMusic(IndoorMusic);
+            if (timeLeft > 0)
             {
                 timeLeft -= Time.deltaTime;
             }
@@ -165,20 +168,24 @@ public class AllTasks : MonoBehaviour
         //task 1
         if(collision.gameObject.tag == "basket")
         {
-            Destroy(basket);
-            Destroy(DropOfftext);
-            Destroy(moneyText);
+            basket.SetActive(false);
+            DropOfftext.SetActive(false);
+            moneyText.SetActive(false);
+            hasInfo = false;
+            TaskFinished();
         }
         if(collision.gameObject.tag == "DoorOut")
         {
             isInBuilding = false;
             System.Threading.Thread.Sleep(1000);
             transform.position = new Vector3(-96.3f, -54.9f, 0f);
+
         }
         if (collision.gameObject.tag == "DoorIn")
         {
             if (!isInBuilding)
             {
+                
                 SpawnRoomObjects(1);
                 isInBuilding = true;
                 Room = 1;
@@ -223,6 +230,10 @@ public class AllTasks : MonoBehaviour
         }
         
     }
+    void TaskFinished()
+    {
+        Music.ChangeMusic(Music.MapMusic);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {   
         //task 2
@@ -231,6 +242,7 @@ public class AllTasks : MonoBehaviour
             //Destroy(leader);
             Destroy(dropOff);
             TaskmanTXTbox.doneTask2 = true;
+            TaskFinished();
         }
         //task 3
         if (collision.gameObject.tag == "Point B" && timeLeft > 0)
@@ -239,6 +251,7 @@ public class AllTasks : MonoBehaviour
             pointB.SetActive(false);
             TaskmanTXTbox.doneTask3 = true;
             timeLeft = 60;
+            TaskFinished();
         }
 
         //task 4

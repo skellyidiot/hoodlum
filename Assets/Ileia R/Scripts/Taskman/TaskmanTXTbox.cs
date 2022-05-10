@@ -34,6 +34,8 @@ public class TaskmanTXTbox : MonoBehaviour
     private string Text2 = "Do whatever I want";
     private string Text3 = "leave";
 
+    public AudioClip JoseTheme;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -148,16 +150,19 @@ public class TaskmanTXTbox : MonoBehaviour
         {
             RootObjectOfHFactsTextBox.SetActive(true);
             isTalking = true;
+            Music.ChangeMusic(JoseTheme);
         }
         if (collision.gameObject.tag != "Player")
         {
             RootObjectOfHFactsTextBox.SetActive(false);
             isTalking = false;
+            Music.ChangeMusic(Music.MapMusic);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         RootObjectOfHFactsTextBox.SetActive(false);
         isTalking = false;
+        Music.ChangeMusic(Music.MapMusic);
     }
 }
